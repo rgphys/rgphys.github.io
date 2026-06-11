@@ -358,6 +358,8 @@
             gap: 0.7rem;
             color: var(--dim);
             min-width: 0;
+            overflow: hidden;
+            max-width: 100%;
         }
         .status-key {
             color: var(--sodium);
@@ -374,14 +376,26 @@
             animation: pulse 2.4s ease infinite;
         }
         @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+        .status-item > span:not(.status-key) {
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            flex: 1 1 0;
+        }
         .status-item a {
             color: var(--dim);
             text-decoration: none;
             border-bottom: 1px dotted var(--faint);
             transition: color 0.2s;
+            min-width: 0;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            display: block;
+            max-width: 100%;
         }
         .status-item a:hover { color: var(--plasma); }
 
@@ -410,6 +424,10 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+        }
+        .ticker-item, .ticker-item * {
+            font-size: 0.62rem !important;
+            line-height: 1.5;
         }
         .ticker-item::before {
             content: '+';
