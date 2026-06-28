@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "rgphys-site",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8743", "--directory", "Z:/rishabhgarg.dev-management/rgphys.github.io"],
+      "port": 8743
+    }
+  ]
+}
