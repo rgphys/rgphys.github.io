@@ -442,7 +442,7 @@
         .section {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 7.5rem 3rem;
+            padding: 4.5rem 3rem;
             opacity: 0;
             transform: translateY(26px);
             transition: opacity 0.7s ease, transform 0.7s ease;
@@ -589,12 +589,12 @@
         /* ── OBSERVATION LOG (projects) ─────────────────────────────────── */
         .log-head {
             display: grid;
-            grid-template-columns: 5.5rem 1fr 10rem 3rem;
-            gap: 2rem;
+            grid-template-columns: 4rem 15rem 1fr 9rem 2.5rem;
+            gap: 1.8rem;
             padding: 0 1.2rem 0.8rem;
             border-bottom: 1px solid var(--line-strong);
             font-family: var(--mono);
-            font-size: 0.56rem;
+            font-size: 0.64rem;
             letter-spacing: 0.24em;
             text-transform: uppercase;
             color: var(--faint);
@@ -602,15 +602,39 @@
         .projects-list { display: flex; flex-direction: column; }
         .project-item {
             display: grid;
-            grid-template-columns: 5.5rem 1fr 10rem 3rem;
-            gap: 2rem;
+            grid-template-columns: 4rem 15rem 1fr 9rem 2.5rem;
+            gap: 1.8rem;
             align-items: start;
-            padding: 2.4rem 1.2rem;
+            padding: 1.5rem 1.2rem;
             border-bottom: 1px solid var(--line);
             text-decoration: none;
             color: inherit;
             position: relative;
             transition: background 0.3s ease;
+        }
+        /* Inline observation plate (thumbnail) sitting beside each entry */
+        .project-thumb {
+            width: 100%;
+            aspect-ratio: 3 / 2;
+            overflow: hidden;
+            border: 1px solid var(--line-strong);
+            background: var(--void-2);
+            position: relative;
+        }
+        .project-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .project-item:hover .project-thumb img { transform: scale(1.05); }
+        .project-thumb.is-empty::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('static/python-logo.svg') center / 42% auto no-repeat;
+            opacity: 0.9;
         }
         .project-item:hover { background: var(--void-2); }
         .project-item::before {
@@ -626,7 +650,7 @@
 
         .project-num {
             font-family: var(--mono);
-            font-size: 0.68rem;
+            font-size: 0.74rem;
             letter-spacing: 0.1em;
             color: var(--faint);
             padding-top: 0.45rem;
@@ -634,7 +658,7 @@
         .project-num::before { content: '№ '; color: var(--sodium-dim); }
         .project-tag {
             font-family: var(--mono);
-            font-size: 0.58rem;
+            font-size: 0.66rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--plasma);
@@ -643,7 +667,7 @@
         .project-title {
             font-family: var(--display);
             font-weight: 500;
-            font-size: clamp(1.25rem, 2.4vw, 1.8rem);
+            font-size: clamp(1.4rem, 2.6vw, 2rem);
             letter-spacing: -0.015em;
             color: #eef2f8;
             line-height: 1.25;
@@ -652,18 +676,18 @@
         }
         .project-item:hover .project-title { color: var(--sodium); }
         .project-desc {
-            font-size: 0.9rem;
+            font-size: 1.02rem;
             font-weight: 300;
             color: var(--dim);
             line-height: 1.7;
-            max-width: 56ch;
+            max-width: 60ch;
         }
         .project-meta {
             font-family: var(--mono);
-            font-size: 0.62rem;
+            font-size: 0.88rem;
             letter-spacing: 0.12em;
             color: var(--faint);
-            padding-top: 0.45rem;
+            align-self: center;
             display: flex;
             flex-direction: column;
             gap: 0.45rem;
@@ -672,7 +696,7 @@
             color: var(--sodium);
             text-transform: uppercase;
             letter-spacing: 0.18em;
-            font-size: 0.55rem;
+            font-size: 0.62rem;
         }
         .project-arrow {
             font-family: var(--mono);
@@ -685,39 +709,6 @@
         .project-item:hover .project-arrow {
             color: var(--sodium);
             transform: translateX(5px);
-        }
-
-        /* Floating image preview that follows the cursor (desktop) */
-        #project-preview {
-            position: fixed;
-            z-index: 50;
-            width: 300px;
-            aspect-ratio: 3 / 2;
-            pointer-events: none;
-            opacity: 0;
-            transform: scale(0.94);
-            transition: opacity 0.22s ease, transform 0.22s ease;
-            border: 1px solid var(--line-strong);
-            background: var(--void-2);
-            overflow: hidden;
-        }
-        #project-preview.show { opacity: 1; transform: scale(1); }
-        #project-preview img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        #project-preview::after {
-            content: attr(data-caption);
-            position: absolute;
-            left: 0; right: 0; bottom: 0;
-            padding: 0.35rem 0.7rem;
-            background: rgba(5,8,16,0.85);
-            font-family: var(--mono);
-            font-size: 0.55rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--sodium);
         }
 
         /* ── GITHUB FEED ────────────────────────────────────────────────── */
@@ -868,12 +859,12 @@
             .log-head { display: none; }
             .project-item { grid-template-columns: 1fr; gap: 0.8rem; padding: 2rem 1rem; }
             .project-num { padding-top: 0; }
+            .project-thumb { max-width: 320px; }
             .project-meta { flex-direction: row; gap: 1.4rem; padding-top: 0; }
             .project-arrow { display: none; }
             .feed-item { grid-template-columns: 1fr; gap: 0.3rem; }
             .feed-time { text-align: left; }
             .hero-stats { flex-wrap: wrap; gap: 1.6rem; }
-            #project-preview { display: none; }
             .contact-link-item { grid-template-columns: 72px 1fr auto; gap: 0.9rem; }
         }
         @media (max-width: 480px) {
@@ -1077,7 +1068,7 @@
             <div class="section-line"></div>
         </div>
         <div class="log-head" aria-hidden="true">
-            <span>Entry</span><span>Object / Notes</span><span>Epoch</span><span></span>
+            <span>Entry</span><span>Plate</span><span>Object / Notes</span><span>Epoch</span><span></span>
         </div>
         <div class="projects-list" id="projects-list"></div>
     </section>
@@ -1125,9 +1116,6 @@
             <p id="footer-tagline"></p>
         </div>
     </footer>
-
-    <!-- Floating project image preview -->
-    <div id="project-preview" data-caption=""><img alt=""></div>
 
     <script>
         // ── Gravity-well particle field ──────────────────────────────────
@@ -1448,11 +1436,12 @@
                         const num = String(i + 1).padStart(3, '0');
                         const isExternal = p.href && p.href.startsWith('http');
                         const targetAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
-                        const imgAttrs = p.image
-                            ? ' data-image="' + esc(p.image) + '" data-image-alt="' + esc(p.imageAlt || '') + '"'
-                            : '';
-                        return '<a href="' + esc(p.href || '#') + '"' + targetAttr + imgAttrs + ' class="project-item">' +
+                        const thumb = p.image
+                            ? '<div class="project-thumb"><img src="' + esc(p.image) + '" alt="' + esc(p.imageAlt || '') + '" loading="lazy"></div>'
+                            : '<div class="project-thumb is-empty"></div>';
+                        return '<a href="' + esc(p.href || '#') + '"' + targetAttr + ' class="project-item">' +
                             '<span class="project-num">' + num + '</span>' +
+                            thumb +
                             '<div class="project-body">' +
                             '<div class="project-tag">' + esc(p.tag) + '</div>' +
                             '<h3 class="project-title">' + esc(p.title) + '</h3>' +
@@ -1465,7 +1454,6 @@
                             '<span class="project-arrow">-&gt;</span>' +
                             '</a>';
                     }).join('');
-                    bindProjectPreviews();
                 }
 
                 // Contact intro — supports inline HTML (em, etc.)
@@ -1493,30 +1481,6 @@
                     const nowEl = el('status-now');
                     nowEl.innerHTML = '<a href="' + CMS_URL + '/now">' + esc(c.now.body) + '</a>';
                 }
-            }
-
-            // ── Floating project image preview (desktop only) ──
-            function bindProjectPreviews() {
-                const preview = el('project-preview');
-                const img = preview.querySelector('img');
-                if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-                document.querySelectorAll('.project-item[data-image]').forEach(item => {
-                    item.addEventListener('pointerenter', () => {
-                        img.src = item.dataset.image;
-                        img.alt = item.dataset.imageAlt || '';
-                        preview.setAttribute('data-caption', 'Fig. ' + item.querySelector('.project-num').textContent);
-                        preview.classList.add('show');
-                    });
-                    item.addEventListener('pointermove', e => {
-                        const x = Math.min(e.clientX + 28, window.innerWidth - 320);
-                        const y = Math.min(e.clientY - 100, window.innerHeight - 230);
-                        preview.style.left = x + 'px';
-                        preview.style.top = Math.max(y, 12) + 'px';
-                    });
-                    item.addEventListener('pointerleave', () => preview.classList.remove('show'));
-                });
             }
 
             // ── Relative time helper ──
