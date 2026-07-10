@@ -711,51 +711,6 @@
             transform: translateX(5px);
         }
 
-        /* ── GITHUB FEED ────────────────────────────────────────────────── */
-        .feed-list { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
-        .feed-item {
-            display: grid;
-            grid-template-columns: 12rem 1fr 7rem;
-            gap: 2rem;
-            align-items: baseline;
-            padding: 1.1rem 1.2rem;
-            border-bottom: 1px solid var(--line);
-            text-decoration: none;
-            transition: background 0.25s ease;
-        }
-        .feed-item:hover { background: var(--void-2); }
-        .feed-repo {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.04em;
-            color: var(--plasma);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .feed-msg {
-            font-size: 0.9rem;
-            font-weight: 300;
-            color: var(--text);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .feed-item:hover .feed-msg { color: var(--sodium); }
-        .feed-time {
-            font-family: var(--mono);
-            font-size: 0.62rem;
-            color: var(--faint);
-            text-align: right;
-        }
-        .feed-empty {
-            padding: 1.4rem 1.2rem;
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            color: var(--faint);
-            border-bottom: 1px solid var(--line);
-        }
-
         /* ── CONTACT ────────────────────────────────────────────────────── */
         .contact-layout {
             display: grid;
@@ -843,7 +798,6 @@
             .skills-layout { grid-template-columns: 1fr 1fr; }
             .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
             nav { padding: 1.1rem 2rem; }
-            .feed-item { grid-template-columns: 9rem 1fr 5rem; gap: 1.2rem; }
         }
         @media (max-width: 768px) {
             nav { padding: 1rem 1.4rem; }
@@ -862,8 +816,6 @@
             .project-thumb { max-width: 320px; }
             .project-meta { flex-direction: row; gap: 1.4rem; padding-top: 0; }
             .project-arrow { display: none; }
-            .feed-item { grid-template-columns: 1fr; gap: 0.3rem; }
-            .feed-time { text-align: left; }
             .hero-stats { flex-wrap: wrap; gap: 1.6rem; }
             .contact-link-item { grid-template-columns: 72px 1fr auto; gap: 0.9rem; }
         }
@@ -976,19 +928,17 @@
             <li><a href="#about" class="nav-overlay-link">About</a></li>
             <li><a href="#instrumentation" class="nav-overlay-link">Skills</a></li>
             <li><a href="#log" class="nav-overlay-link">Research</a></li>
-            <li><a href="#activity" class="nav-overlay-link">Activity</a></li>
             <li><a href="#contact" class="nav-overlay-link">Contact</a></li>
         </ul>
     </div>
 
     <!-- Nav -->
     <nav>
-        <a class="nav-logo" id="nav-logo" href="#"></a>
+        <a class="nav-logo" id="nav-logo" href="#">R. Garg</a>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#instrumentation">Skills</a></li>
             <li><a href="#log">Research</a></li>
-            <li><a href="#activity">Activity</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
         <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false">
@@ -1002,29 +952,50 @@
     <header class="hero">
         <canvas id="fieldCanvas" aria-hidden="true"></canvas>
         <div class="hero-inner">
-            <p class="hero-eyebrow" id="hero-eyebrow"></p>
-            <h1 class="hero-name" id="hero-name"></h1>
-            <p class="hero-tagline" id="hero-tagline"></p>
+            <p class="hero-eyebrow" id="hero-eyebrow">Physics Researcher &amp; Developer</p>
+            <h1 class="hero-name" id="hero-name">Rishabh<span class="last">Garg</span></h1>
+            <p class="hero-tagline" id="hero-tagline">Student researcher at the intersection of physics and mathematical modelling.</p>
             <div class="hero-cta">
-                <a class="btn-primary" id="hero-btn-primary" href="#log"></a>
-                <a class="btn-ghost" id="hero-btn-ghost" href="#contact"></a>
+                <a class="btn-primary" id="hero-btn-primary" href="#log">View Research →</a>
+                <a class="btn-ghost" id="hero-btn-ghost" href="#contact">Get in Touch</a>
             </div>
-            <div class="hero-stats" id="hero-stats"></div>
+            <div class="hero-stats" id="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-label">Published in</div>
+                    <div class="stat-value">MNRAS</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Researching with</div>
+                    <div class="stat-value">Caltech / JPL</div>
+                </div>
+            </div>
         </div>
         <div class="hero-scroll" aria-hidden="true">Scroll</div>
     </header>
 
-    <!-- Live status strip -->
+    <!-- Status strip -->
     <div class="status-strip">
         <div class="status-inner" id="status-strip">
-            <div class="status-item"><span class="status-key">Now</span><span id="status-now">—</span></div>
-            <div class="status-item"><span class="status-key">Last push</span><span id="status-push">—</span></div>
+            <div class="status-item"><span class="status-key">Now</span><span id="status-now">Currently working on astrophysics research at Caltech / JPL.</span></div>
         </div>
     </div>
 
-    <!-- Ticker -->
+    <!-- Ticker (items duplicated for seamless infinite scroll) -->
     <div class="ticker-wrap" aria-hidden="true">
-        <div class="ticker" id="ticker"></div>
+        <div class="ticker" id="ticker">
+            <span class="ticker-item">Astrophysics Research — Caltech</span>
+            <span class="ticker-item">CERN Beamline for Schools — Shortlisted Winner</span>
+            <span class="ticker-item">Published: Monthly Notices of the Royal Astronomical Society</span>
+            <span class="ticker-item">JOSS Reviewer</span>
+            <span class="ticker-item">Portola High School, Irvine</span>
+            <span class="ticker-item">Show Editor — Portola News Network</span>
+            <span class="ticker-item">Astrophysics Research — Caltech</span>
+            <span class="ticker-item">CERN Beamline for Schools — Shortlisted Winner</span>
+            <span class="ticker-item">Published: Monthly Notices of the Royal Astronomical Society</span>
+            <span class="ticker-item">JOSS Reviewer</span>
+            <span class="ticker-item">Portola High School, Irvine</span>
+            <span class="ticker-item">Show Editor — Portola News Network</span>
+        </div>
     </div>
 
     <!-- About -->
@@ -1035,8 +1006,33 @@
             <div class="section-line"></div>
         </div>
         <div class="about-grid">
-            <div class="about-readouts" id="about-readouts"></div>
-            <div class="about-body" id="about-body"></div>
+            <div class="about-readouts" id="about-readouts">
+                <div class="readout" data-idx="01">
+                    <div class="readout-label">Current Position</div>
+                    <div class="readout-name">Caltech</div>
+                    <div class="readout-sub">Astrophysics Researcher</div>
+                </div>
+                <div class="readout" data-idx="02">
+                    <div class="readout-label">Competition</div>
+                    <div class="readout-name">CERN Beamline for Schools</div>
+                    <div class="readout-sub">Team Captain &amp; Shortlisted Winner</div>
+                </div>
+                <div class="readout" data-idx="03">
+                    <div class="readout-label">Publication</div>
+                    <div class="readout-name">Monthly Notices of the Royal Astronomical Society</div>
+                    <div class="readout-sub">Exomoon Research (2025)</div>
+                </div>
+                <div class="readout" data-idx="04">
+                    <div class="readout-label">Reviewer</div>
+                    <div class="readout-name">JOSS</div>
+                    <div class="readout-sub">Journal of Open Source Software</div>
+                </div>
+            </div>
+            <div class="about-body" id="about-body">
+                <p>I am an incoming freshman at <strong>California Institute of Technology (Caltech)</strong>, with a deep passion for the interwoven fields of physics and computer science. I am fascinated by the fundamental laws that govern our universe, and I enjoy leveraging programming to solve complex problems, model intricate systems, and analyze data at scale.</p>
+                <p>My goal is to pursue a career that allows me to combine these two fields to push the boundaries of scientific research and technological innovation. Currently, I am involved in <strong>astrophysics research at Caltech</strong>, where I apply computational techniques to study exoplanetary atmospheres. I am also a reviewer for the <strong>Journal of Open Source Software</strong>, contributing to the open-source community by evaluating scientific software tools.</p>
+                <p>Outside of academics, I find balance through running and video production.</p>
+            </div>
         </div>
     </section>
 
@@ -1052,7 +1048,41 @@
             <h2 class="section-title">Instrumentation</h2>
             <div class="section-line"></div>
         </div>
-        <div class="skills-layout" id="skills-layout"></div>
+        <div class="skills-layout" id="skills-layout">
+            <div class="skill-panel">
+                <div class="skill-panel-label">Physics &amp; Research</div>
+                <ul class="skill-list">
+                    <li>Data Analysis</li>
+                    <li>High Energy Particle Physics</li>
+                    <li>Network Analysis</li>
+                    <li>Scientific Computing</li>
+                    <li>Astrophysical Radiative Transfer</li>
+                </ul>
+            </div>
+            <div class="skill-panel">
+                <div class="skill-panel-label">Programming</div>
+                <ul class="skill-list">
+                    <li>Python</li>
+                    <li>C++</li>
+                    <li>LaTeX</li>
+                    <li>Go</li>
+                    <li>Java</li>
+                </ul>
+            </div>
+            <div class="skill-panel">
+                <div class="skill-panel-label">Tools &amp; Technologies</div>
+                <ul class="skill-list">
+                    <li>Git / GitHub</li>
+                    <li>Linux (Debian, Ubuntu)</li>
+                    <li>NumPy / SciPy</li>
+                    <li>matplotlib</li>
+                    <li>ROOT (CERN)</li>
+                    <li>Geant4 (CERN)</li>
+                    <li>Claude Code</li>
+                    <li>Perplexity Computer</li>
+                </ul>
+            </div>
+        </div>
     </section>
 
     <div class="divider" aria-hidden="true">
@@ -1070,7 +1100,78 @@
         <div class="log-head" aria-hidden="true">
             <span>Entry</span><span>Plate</span><span>Object / Notes</span><span>Epoch</span><span></span>
         </div>
-        <div class="projects-list" id="projects-list"></div>
+        <div class="projects-list" id="projects-list">
+            <a href="https://beamlineforschools.cern/wp-content/uploads/2025/12/BL4S_all-winners_2025.pdf" target="_blank" rel="noopener noreferrer" class="project-item">
+                <span class="project-num">001</span>
+                <div class="project-thumb"><img src="static/setup2.png" alt="CERN Beamline experimental setup for relativistic electron particle beam research" loading="lazy"></div>
+                <div class="project-body">
+                    <div class="project-tag">Particle Physics · CERN</div>
+                    <h3 class="project-title">Beamline For Schools Proposal</h3>
+                    <p class="project-desc">Team captain for a research proposal to the CERN BL4S competition, shortlisted as a winning proposal. Explores relativistic electron particle beam cross sections to improve high-accuracy beam collimation techniques.</p>
+                </div>
+                <div class="project-meta">
+                    <span>2025</span>
+                    <span class="project-status">Shortlisted</span>
+                </div>
+                <span class="project-arrow">-&gt;</span>
+            </a>
+            <a href="https://academic.oup.com/mnras/advance-article/doi/10.1093/mnras/staf1526/8263929" target="_blank" rel="noopener noreferrer" class="project-item">
+                <span class="project-num">002</span>
+                <div class="project-thumb"><img src="static/combined_mcmc_prometheus_models-1.png" alt="MCMC simulation results showing sodium signatures in exomoon atmospheres around WASP-39b" loading="lazy"></div>
+                <div class="project-body">
+                    <div class="project-tag">Astrophysics · Caltech · MNRAS</div>
+                    <h3 class="project-title">Caltech Exomoon Research</h3>
+                    <p class="project-desc">Collaborated with Dr. Apurva Oza to simulate exomoons around gas giant exoplanets. Published in Monthly Notices of the Royal Astronomical Society with analysis of sodium signatures around WASP-39b.</p>
+                </div>
+                <div class="project-meta">
+                    <span>2025</span>
+                    <span class="project-status">Published</span>
+                </div>
+                <span class="project-arrow">-&gt;</span>
+            </a>
+            <a href="https://github.com/rgphys/Prometheus" target="_blank" rel="noopener noreferrer" class="project-item">
+                <span class="project-num">003</span>
+                <div class="project-thumb"><img src="static/C_UV_08.png" alt="Radiative transfer model visualization showing ultraviolet wavelength analysis for exoplanet atmospheres" loading="lazy"></div>
+                <div class="project-body">
+                    <div class="project-tag">Astrophysics · Caltech</div>
+                    <h3 class="project-title">PROMETHEUS: Radiative Transfer Optimization</h3>
+                    <p class="project-desc">Vectorized the radiative transfer software PROMETHEUS for improved performance and scalability, enabling inverse modeling of complex astrophysical scenarios.</p>
+                </div>
+                <div class="project-meta">
+                    <span>2024</span>
+                    <span class="project-status">Ongoing</span>
+                </div>
+                <span class="project-arrow">-&gt;</span>
+            </a>
+            <a href="https://github.com/rgphys/ToS-Complexity" target="_blank" rel="noopener noreferrer" class="project-item">
+                <span class="project-num">004</span>
+                <div class="project-thumb"><img src="static/Reddit.png" alt="Network analysis visualization of Reddit's terms of service document structure and complexity" loading="lazy"></div>
+                <div class="project-body">
+                    <div class="project-tag">Network Analysis · UIUC</div>
+                    <h3 class="project-title">Crowd Dynamics Lab Research</h3>
+                    <p class="project-desc">Network analysis of terms of service of major online platforms at UIUC. Novel algorithms to parse, analyze, and visualize complex legal text in order to enhance user transparency and rights understanding.</p>
+                </div>
+                <div class="project-meta">
+                    <span>2024</span>
+                    <span class="project-status">Complete</span>
+                </div>
+                <span class="project-arrow">-&gt;</span>
+            </a>
+            <a href="https://github.com/rgphys?tab=repositories" target="_blank" rel="noopener noreferrer" class="project-item">
+                <span class="project-num">005</span>
+                <div class="project-thumb is-empty"></div>
+                <div class="project-body">
+                    <div class="project-tag">Software Development · GitHub</div>
+                    <h3 class="project-title">Python Projects Collection</h3>
+                    <p class="project-desc">A curated collection of Python work, including small scripts to complex applications. Demonstrates proficiency in data structures, algorithms, and scientific programming.</p>
+                </div>
+                <div class="project-meta">
+                    <span>—</span>
+                    <span class="project-status">Ongoing</span>
+                </div>
+                <span class="project-arrow">-&gt;</span>
+            </a>
+        </div>
     </section>
 
     <div class="divider" aria-hidden="true">
@@ -1078,42 +1179,41 @@
         <div class="spectrum"></div>
     </div>
 
-    <!-- GitHub activity -->
-    <section id="activity" class="section">
-        <div class="section-header">
-            <span class="section-num">SEC / 04</span>
-            <h2 class="section-title">Recent Commits</h2>
-            <div class="section-line"></div>
-        </div>
-        <div class="feed-list" id="feed-list">
-            <div class="feed-empty">Awaiting telemetry…</div>
-        </div>
-    </section>
-
-    <div class="divider" aria-hidden="true">
-        <span class="divider-label">Mg I · 518.4 nm</span>
-        <div class="spectrum"></div>
-    </div>
-
     <!-- Contact -->
     <section id="contact" class="section">
         <div class="section-header">
-            <span class="section-num">SEC / 05</span>
+            <span class="section-num">SEC / 04</span>
             <h2 class="section-title">Transmission</h2>
             <div class="section-line"></div>
         </div>
         <div class="contact-layout">
-            <div class="contact-intro" id="contact-intro"></div>
-            <div class="contact-links" id="contact-links"></div>
+            <div class="contact-intro" id="contact-intro">Interested in collaborating on research or a project? I'd love to <em>hear from you.</em></div>
+            <div class="contact-links" id="contact-links">
+                <a href="mailto:rgarg@rishabhgarg.dev" class="contact-link-item">
+                    <span class="contact-link-label">Email</span>
+                    <span class="contact-link-value">rgarg@rishabhgarg.dev</span>
+                    <span class="contact-link-arrow">-&gt;</span>
+                </a>
+                <a href="https://github.com/rgphys" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+                    <span class="contact-link-label">GitHub</span>
+                    <span class="contact-link-value">rgphys</span>
+                    <span class="contact-link-arrow">-&gt;</span>
+                </a>
+                <a href="https://www.linkedin.com/in/rishabh-garg-34a5a51b7/" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+                    <span class="contact-link-label">LinkedIn</span>
+                    <span class="contact-link-value">Rishabh Garg</span>
+                    <span class="contact-link-arrow">-&gt;</span>
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="footer-inner">
-            <p id="footer-copyright"></p>
+            <p id="footer-copyright">© 2026 Rishabh Garg</p>
             <p class="footer-coords">33.6846° N · 117.8265° W</p>
-            <p id="footer-tagline"></p>
+            <p id="footer-tagline">Physics Researcher · Developer · Irvine, CA</p>
         </div>
     </footer>
 
@@ -1281,293 +1381,6 @@
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
         document.querySelectorAll('.section').forEach(s => observer.observe(s));
-    </script>
-
-    <script>
-        // ── CMS Content Loader ───────────────────────────────────────────
-        // Fetches live content from the admin server first, then renders it.
-        // Falls back to embedded defaults if the server is unreachable.
-        (function () {
-            const CMS_URL = 'https://admin.rishabhgarg.dev';
-
-            const DEFAULTS = {
-                nav: { logo: 'R. Garg' },
-                hero: {
-                    eyebrow: 'Physics Researcher & Developer',
-                    firstName: 'Rishabh',
-                    lastName: 'Garg',
-                    tagline: 'High school researcher at the intersection of astrophysics, particle physics, and software.',
-                    primaryBtn: { href: '#log', text: 'View Research →' },
-                    ghostBtn: { href: '#contact', text: 'Get in Touch' },
-                    stats: [
-                        { label: 'Published in', value: 'MNRAS' },
-                        { label: 'Researching with', value: 'Caltech / JPL' }
-                    ]
-                },
-                ticker: [
-                    'Astrophysics Research — Caltech',
-                    'CERN Beamline for Schools — Shortlisted Winner',
-                    'Published: Monthly Notices of the Royal Astronomical Society',
-                    'JOSS Reviewer',
-                    'Portola High School, Irvine',
-                    'Show Editor — Portola News Network'
-                ],
-                about: {
-                    affiliations: [
-                        { label: 'Current Position', name: 'Caltech', sub: 'Astrophysics Researcher' },
-                        { label: 'Competition', name: 'CERN Beamline for Schools', sub: 'Team Captain & Shortlisted Winner' },
-                        { label: 'Publication', name: 'Monthly Notices of the Royal Astronomical Society', sub: 'Exomoon Research (2025)' },
-                        { label: 'Reviewer', name: 'JOSS', sub: 'Journal of Open Source Software' }
-                    ],
-                    paragraphs: [
-                        'I am a high school student at <strong>Portola High, Irvine</strong> with a deep passion for the interwoven fields of physics and computer science. I am fascinated by the fundamental laws that govern our universe, and I enjoy leveraging programming to solve complex problems, model intricate systems, and analyze data at scale.',
-                        'My goal is to pursue a career that allows me to combine these two fields to push the boundaries of scientific research and technological innovation. Currently, I am involved in <strong>astrophysics research at Caltech</strong>, where I apply computational techniques to study exoplanetary atmospheres. I am also a reviewer for the <strong>Journal of Open Source Software</strong>, contributing to the open-source community by evaluating scientific software tools.',
-                        'Outside of academics, I find balance through running and video production.'
-                    ]
-                },
-                skills: [
-                    { category: 'Physics & Research', items: ['Data Analysis', 'High Energy Particle Physics', 'Network Analysis', 'Scientific Computing', 'Astrophysical Radiative Transfer'] },
-                    { category: 'Programming', items: ['Python', 'C++', 'LaTeX', 'Go', 'Java'] },
-                    { category: 'Tools & Technologies', items: ['Git / Linux', 'NumPy / SciPy', 'Matplotlib', 'ROOT (CERN)', 'Geant4'] }
-                ],
-                projects: [
-                    { href: 'https://beamlineforschools.cern/wp-content/uploads/2025/12/BL4S_all-winners_2025.pdf', tag: 'Particle Physics · CERN', title: 'Beamline For Schools Proposal', desc: 'Team captain for a research proposal to the CERN BL4S competition, shortlisted as a winning proposal. Explores relativistic electron particle beam cross sections to improve high-accuracy beam collimation techniques.', image: 'static/setup2.png', imageAlt: 'CERN Beamline experimental setup for relativistic electron particle beam research', year: '2025', status: 'Shortlisted' },
-                    { href: 'https://academic.oup.com/mnras/advance-article/doi/10.1093/mnras/staf1526/8263929', tag: 'Astrophysics · Caltech · MNRAS', title: 'Caltech Exomoon Research', desc: 'Collaborated with Dr. Apurva Oza to simulate exomoons around gas giant exoplanets. Published in Monthly Notices of the Royal Astronomical Society with analysis of sodium signatures around WASP-39b.', image: 'static/combined_mcmc_prometheus_models-1.png', imageAlt: 'MCMC simulation results showing sodium signatures in exomoon atmospheres around WASP-39b', year: '2025', status: 'Published' },
-                    { href: 'https://github.com/rgphys/Prometheus', tag: 'Astrophysics · Caltech', title: 'PROMETHEUS: Radiative Transfer Optimization', desc: 'Vectorized the radiative transfer software PROMETHEUS for improved performance and scalability, enabling inverse modeling of complex astrophysical scenarios.', image: 'static/C_UV_08.png', imageAlt: 'Radiative transfer model visualization showing ultraviolet wavelength analysis for exoplanet atmospheres', year: '2025', status: 'Ongoing' },
-                    { href: 'https://github.com/rgphys/ToS-Complexity', tag: 'Network Analysis · UIUC', title: 'Crowd Dynamics Lab Research', desc: 'Network analysis of terms of service of major online platforms at UIUC. Novel algorithms to parse, analyze, and visualize complex legal text in order to enhance user transparency and rights understanding.', image: 'static/Reddit.png', imageAlt: 'Network analysis visualization of Reddit\'s terms of service document structure and complexity', year: '2025', status: 'Complete' },
-                    { href: 'https://github.com/rgphys?tab=repositories', tag: 'Software Development · GitHub', title: 'Python Projects Collection', desc: 'A curated collection of Python work, including small scripts to complex applications. Demonstrates proficiency in data structures, algorithms, and scientific programming.', year: '—', status: 'Ongoing' }
-                ],
-                contact: {
-                    intro: 'Interested in collaborating on research or a project? I\'d love to <em>hear from you.</em>',
-                    links: [
-                        { href: 'mailto:rishabh@rishabhgarg.dev', label: 'Email', value: 'rishabhgarg@rishabhgarg.dev' },
-                        { href: 'https://github.com/rgphys', label: 'GitHub', value: 'rgphys' },
-                        { href: 'https://www.linkedin.com/in/rishabh-garg-34a5a51b7/', label: 'LinkedIn', value: 'Rishabh Garg' }
-                    ]
-                },
-                footer: { name: 'Rishabh Garg', tagline: 'Physics Researcher · Developer · Irvine, CA' },
-                now: { updated: '', body: '' }
-            };
-
-            function el(id) { return document.getElementById(id); }
-
-            function esc(str) {
-                return String(str)
-                    .replace(/&/g, '&amp;')
-                    .replace(/</g, '&lt;')
-                    .replace(/>/g, '&gt;')
-                    .replace(/"/g, '&quot;');
-            }
-
-            function renderContent(c) {
-                // Nav
-                if (c.nav?.logo) el('nav-logo').textContent = c.nav.logo;
-
-                // Hero
-                if (c.hero) {
-                    const h = c.hero;
-                    if (h.eyebrow) el('hero-eyebrow').textContent = h.eyebrow;
-                    if (h.firstName || h.lastName) {
-                        el('hero-name').innerHTML =
-                            esc(h.firstName || 'Rishabh') +
-                            '<span class="last">' + esc(h.lastName || 'Garg') + '</span>';
-                    }
-                    if (h.tagline) el('hero-tagline').textContent = h.tagline;
-                    if (h.primaryBtn) {
-                        const btn = el('hero-btn-primary');
-                        btn.href = h.primaryBtn.href || btn.href;
-                        btn.textContent = h.primaryBtn.text || btn.textContent;
-                    }
-                    if (h.ghostBtn) {
-                        const btn = el('hero-btn-ghost');
-                        btn.href = h.ghostBtn.href || btn.href;
-                        btn.textContent = h.ghostBtn.text || btn.textContent;
-                    }
-                    // 'stats' is the new key; fall back to legacy 'dataPanel'
-                    const stats = Array.isArray(h.stats) && h.stats.length ? h.stats : h.dataPanel;
-                    if (Array.isArray(stats) && stats.length) {
-                        el('hero-stats').innerHTML = stats.map(d =>
-                            '<div class="stat-item">' +
-                            '<div class="stat-label">' + esc(d.label) + '</div>' +
-                            '<div class="stat-value">' + esc(d.value) + '</div>' +
-                            '</div>'
-                        ).join('');
-                    }
-                }
-
-                // Ticker — items duplicated for seamless infinite scroll
-                if (Array.isArray(c.ticker) && c.ticker.length) {
-                    const doubled = [...c.ticker, ...c.ticker];
-                    el('ticker').innerHTML = doubled.map(item =>
-                        '<span class="ticker-item">' + esc(item) + '</span>'
-                    ).join('');
-                }
-
-                // About readouts
-                if (Array.isArray(c.about?.affiliations) && c.about.affiliations.length) {
-                    el('about-readouts').innerHTML = c.about.affiliations.map((a, i) =>
-                        '<div class="readout" data-idx="' + String(i + 1).padStart(2, '0') + '">' +
-                        '<div class="readout-label">' + esc(a.label) + '</div>' +
-                        '<div class="readout-name">' + esc(a.name) + '</div>' +
-                        '<div class="readout-sub">' + esc(a.sub) + '</div>' +
-                        '</div>'
-                    ).join('');
-                }
-
-                // About body — paragraphs support inline HTML (bold, em, links)
-                if (Array.isArray(c.about?.paragraphs) && c.about.paragraphs.length) {
-                    el('about-body').innerHTML = c.about.paragraphs.map(p => '<p>' + p + '</p>').join('');
-                }
-
-                // Skills
-                if (Array.isArray(c.skills) && c.skills.length) {
-                    el('skills-layout').innerHTML = c.skills.map(s =>
-                        '<div class="skill-panel">' +
-                        '<div class="skill-panel-label">' + esc(s.category) + '</div>' +
-                        '<ul class="skill-list">' +
-                        s.items.map(i => '<li>' + esc(i) + '</li>').join('') +
-                        '</ul></div>'
-                    ).join('');
-                }
-
-                // Projects → observation log
-                if (Array.isArray(c.projects) && c.projects.length) {
-                    el('projects-list').innerHTML = c.projects.map((p, i) => {
-                        const num = String(i + 1).padStart(3, '0');
-                        const isExternal = p.href && p.href.startsWith('http');
-                        const targetAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
-                        const thumb = p.image
-                            ? '<div class="project-thumb"><img src="' + esc(p.image) + '" alt="' + esc(p.imageAlt || '') + '" loading="lazy"></div>'
-                            : '<div class="project-thumb is-empty"></div>';
-                        return '<a href="' + esc(p.href || '#') + '"' + targetAttr + ' class="project-item">' +
-                            '<span class="project-num">' + num + '</span>' +
-                            thumb +
-                            '<div class="project-body">' +
-                            '<div class="project-tag">' + esc(p.tag) + '</div>' +
-                            '<h3 class="project-title">' + esc(p.title) + '</h3>' +
-                            '<p class="project-desc">' + esc(p.desc) + '</p>' +
-                            '</div>' +
-                            '<div class="project-meta">' +
-                            '<span>' + esc(p.year || '—') + '</span>' +
-                            (p.status ? '<span class="project-status">' + esc(p.status) + '</span>' : '') +
-                            '</div>' +
-                            '<span class="project-arrow">-&gt;</span>' +
-                            '</a>';
-                    }).join('');
-                }
-
-                // Contact intro — supports inline HTML (em, etc.)
-                if (c.contact?.intro) el('contact-intro').innerHTML = c.contact.intro;
-
-                // Contact links
-                if (Array.isArray(c.contact?.links) && c.contact.links.length) {
-                    el('contact-links').innerHTML = c.contact.links.map(l => {
-                        const isExternal = l.href && l.href.startsWith('http');
-                        const targetAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
-                        return '<a href="' + esc(l.href) + '"' + targetAttr + ' class="contact-link-item">' +
-                            '<span class="contact-link-label">' + esc(l.label) + '</span>' +
-                            '<span class="contact-link-value">' + esc(l.value) + '</span>' +
-                            '<span class="contact-link-arrow">-&gt;</span>' +
-                            '</a>';
-                    }).join('');
-                }
-
-                // Footer
-                if (c.footer?.name) el('footer-copyright').textContent = '© ' + new Date().getFullYear() + ' ' + c.footer.name;
-                if (c.footer?.tagline) el('footer-tagline').textContent = c.footer.tagline;
-
-                // Now status (from CMS content)
-                if (c.now?.body) {
-                    const nowEl = el('status-now');
-                    nowEl.innerHTML = '<a href="' + CMS_URL + '/now">' + esc(c.now.body) + '</a>';
-                }
-            }
-
-            // ── Relative time helper ──
-            function relTime(iso) {
-                if (!iso) return '';
-                const diff = Date.now() - new Date(iso).getTime();
-                const mins = Math.floor(diff / 60000);
-                if (mins < 1) return 'just now';
-                if (mins < 60) return mins + 'm ago';
-                const hrs = Math.floor(mins / 60);
-                if (hrs < 24) return hrs + 'h ago';
-                const days = Math.floor(hrs / 24);
-                if (days < 30) return days + 'd ago';
-                return Math.floor(days / 30) + 'mo ago';
-            }
-
-            // ── GitHub activity feed ──
-            async function loadGitHub() {
-                try {
-                    const res = await fetch(CMS_URL + '/api/github');
-                    if (!res.ok) throw new Error('HTTP ' + res.status);
-                    const pushes = await res.json();
-                    if (!Array.isArray(pushes) || !pushes.length) throw new Error('empty');
-
-                    // Status strip: latest push
-                    const latest = pushes[0];
-                    el('status-push').innerHTML =
-                        '<a href="' + esc(latest.url) + '" target="_blank" rel="noopener noreferrer">' +
-                        esc(latest.repo.split('/').pop()) + ' — “' + esc(latest.message) + '” · ' +
-                        relTime(latest.ts) + '</a>';
-
-                    // Feed section
-                    el('feed-list').innerHTML = pushes.map(p =>
-                        '<a class="feed-item" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer">' +
-                        '<span class="feed-repo">' + esc(p.repo) + '</span>' +
-                        '<span class="feed-msg">' + esc(p.message) + '</span>' +
-                        '<span class="feed-time">' + relTime(p.ts) + '</span>' +
-                        '</a>'
-                    ).join('');
-                } catch (e) {
-                    el('status-push').innerHTML =
-                        '<a href="https://github.com/rgphys" target="_blank" rel="noopener noreferrer">github.com/rgphys</a>';
-                    el('feed-list').innerHTML =
-                        '<div class="feed-empty">Telemetry offline — see <a href="https://github.com/rgphys" target="_blank" rel="noopener noreferrer" style="color:var(--plasma)">GitHub</a> directly.</div>';
-                }
-            }
-
-            // ── Analytics beacon ──
-            function beacon() {
-                try {
-                    const payload = JSON.stringify({
-                        path: location.pathname,
-                        referrer: document.referrer || ''
-                    });
-                    if (navigator.sendBeacon) {
-                        navigator.sendBeacon(
-                            CMS_URL + '/api/analytics/hit',
-                            new Blob([payload], { type: 'application/json' })
-                        );
-                    } else {
-                        fetch(CMS_URL + '/api/analytics/hit', {
-                            method: 'POST', body: payload, keepalive: true,
-                            headers: { 'Content-Type': 'application/json' }
-                        }).catch(() => {});
-                    }
-                } catch (e) { /* non-critical */ }
-            }
-
-            async function loadContent() {
-                try {
-                    const controller = new AbortController();
-                    const timeout = setTimeout(() => controller.abort(), 5000);
-                    const res = await fetch(CMS_URL + '/api/content', { signal: controller.signal });
-                    clearTimeout(timeout);
-                    if (!res.ok) throw new Error('HTTP ' + res.status);
-                    const data = await res.json();
-                    renderContent(data);
-                } catch (e) {
-                    console.info('[CMS] Server unreachable, using embedded defaults.', e.message);
-                    renderContent(DEFAULTS);
-                }
-            }
-
-            loadContent();
-            loadGitHub();
-            beacon();
-        })();
     </script>
 
     <script type="application/ld+json">
