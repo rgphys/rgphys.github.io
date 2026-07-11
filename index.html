@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rishabh Garg | Physics Researcher &amp; Developer</title>
     <meta name="description" content="Portfolio of Rishabh Garg, a high school researcher and developer specializing in physics and computer science. Published in MNRAS, Caltech researcher, CERN Beamline for Schools winner.">
-    <meta name="keywords" content="Rishabh Garg, physics researcher, software developer, astrophysics, particle physics, scientific computing, Caltech, CERN, MNRAS, JOSS reviewer, exoplanet research">
+    <meta name="keywords" content="Rishabh Garg, physics researcher, mathematics, mathematical modelling, software developer, particle physics, scientific computing, numerical methods, Caltech, CERN, MNRAS, JOSS reviewer">
     <meta name="author" content="Rishabh Garg">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://rishabhgarg.dev">
     <meta property="og:title" content="Rishabh Garg | Physics Researcher & Developer">
-    <meta property="og:description" content="Portfolio of Rishabh Garg, a high school researcher and developer specializing in astrophysics and particle physics. Published in MNRAS.">
+    <meta property="og:description" content="Portfolio of Rishabh Garg, a student researcher and developer working across physics, mathematics, and computation. Published in MNRAS.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://rishabhgarg.dev">
     <meta property="og:image" content="https://rishabhgarg.dev/static/DSC08945.png">
     <meta property="og:image:alt" content="Rishabh Garg, physics researcher and developer">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Rishabh Garg | Physics Researcher & Developer">
-    <meta name="twitter:description" content="Portfolio of Rishabh Garg, a high school researcher specializing in astrophysics and particle physics.">
+    <meta name="twitter:description" content="Portfolio of Rishabh Garg, a student researcher working across physics, mathematics, and computation.">
     <meta name="twitter:image" content="https://rishabhgarg.dev/static/DSC08945.png">
     <meta name="twitter:image:alt" content="Rishabh Garg, physics researcher and developer">
     <meta name="theme-color" content="#050810">
@@ -29,13 +29,13 @@
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            /* Sodium D-line (589 nm) amber as the primary accent — the wavelength
-               behind the WASP-39b exomoon detection. */
+            /* Warm amber primary accent with cool plasma-cyan counterpoint —
+               a general physics palette rather than any single wavelength. */
             --void: #050810;
             --void-2: #0a0f1d;
             --void-3: #121a2e;
-            --sodium: #ffb454;
-            --sodium-dim: rgba(255,180,84,0.55);
+            --amber: #ffb454;
+            --amber-dim: rgba(255,180,84,0.55);
             --plasma: #6ee3ff;
             --hydrogen: #ff6e91;
             --text: #cdd6e4;
@@ -65,23 +65,30 @@
             line-height: 1.65;
         }
 
-        ::selection { background: var(--sodium); color: var(--void); }
+        ::selection { background: var(--amber); color: var(--void); }
 
         a:focus-visible, button:focus-visible {
-            outline: 2px solid var(--sodium);
+            outline: 2px solid var(--amber);
             outline-offset: 3px;
         }
 
-        /* ── Spectrum strip (top of page + dividers) ────────────────────── */
+        /* ── Accent strip (top of page + dividers) ──────────────────────── */
         .spectrum {
             position: relative;
             height: 6px;
+            background: linear-gradient(90deg,
+                var(--plasma) 0%, var(--amber) 55%, var(--hydrogen) 100%);
+            opacity: 0.7;
+        }
+        /* Full emission-spectrum variant — kept as a single nod to the
+           transmission-spectroscopy work. */
+        .spectrum--lines {
             background: linear-gradient(90deg,
                 #3b1f8f 0%, #2741c9 14%, #1f8fd9 30%, #1fae8a 45%,
                 #b8c92a 58%, #ffb454 72%, #e8633a 86%, #8f1f2e 100%);
             opacity: 0.85;
         }
-        .spectrum::after {
+        .spectrum--lines::after {
             /* absorption lines */
             content: '';
             position: absolute;
@@ -108,8 +115,8 @@
         .divider .spectrum { flex: 1; height: 3px; opacity: 0.5; }
         .divider-label {
             font-family: var(--mono);
-            font-size: 0.6rem;
-            letter-spacing: 0.2em;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
             color: var(--faint);
             white-space: nowrap;
         }
@@ -129,7 +136,7 @@
         .nav-logo {
             font-family: var(--mono);
             font-size: 0.72rem;
-            color: var(--sodium);
+            color: var(--amber);
             letter-spacing: 0.22em;
             text-transform: uppercase;
             text-decoration: none;
@@ -141,8 +148,8 @@
             content: '';
             width: 8px; height: 8px;
             border-radius: 50%;
-            background: var(--sodium);
-            box-shadow: 0 0 10px var(--sodium);
+            background: var(--amber);
+            box-shadow: 0 0 10px var(--amber);
         }
         .nav-links { display: flex; gap: 2.4rem; list-style: none; }
         .nav-links a {
@@ -161,7 +168,7 @@
             color: var(--faint);
             margin-right: 0.45em;
         }
-        .nav-links a:hover { color: var(--sodium); }
+        .nav-links a:hover { color: var(--amber); }
 
         /* ── HERO ───────────────────────────────────────────────────────── */
         .hero {
@@ -196,7 +203,7 @@
             font-size: 0.7rem;
             letter-spacing: 0.28em;
             text-transform: uppercase;
-            color: var(--sodium);
+            color: var(--amber);
             margin-bottom: 1.6rem;
             display: flex;
             align-items: center;
@@ -205,7 +212,7 @@
             animation: reveal 0.9s ease 0.25s both;
         }
         .hero-eyebrow::before {
-            content: 'λ 589.0 nm';
+            content: 'iℏ ∂ₜψ = Ĥψ';
             color: var(--faint);
             border: 1px solid var(--line);
             padding: 0.2rem 0.6rem;
@@ -227,7 +234,7 @@
         .hero-name .last {
             display: block;
             color: transparent;
-            -webkit-text-stroke: 1.5px var(--sodium);
+            -webkit-text-stroke: 1.5px var(--amber);
         }
 
         .hero-tagline {
@@ -259,13 +266,13 @@
             display: inline-block;
         }
         .btn-primary {
-            background: var(--sodium);
+            background: var(--amber);
             color: var(--void);
-            border: 1px solid var(--sodium);
+            border: 1px solid var(--amber);
         }
         .btn-primary:hover {
             background: transparent;
-            color: var(--sodium);
+            color: var(--amber);
             box-shadow: 0 0 30px rgba(255,180,84,0.25);
         }
         .btn-ghost {
@@ -298,7 +305,7 @@
             font-family: var(--display);
             font-weight: 500;
             font-size: 1.45rem;
-            color: var(--sodium);
+            color: var(--amber);
             line-height: 1.1;
         }
 
@@ -320,7 +327,7 @@
             content: '';
             width: 1px;
             height: 36px;
-            background: linear-gradient(to bottom, var(--sodium), transparent);
+            background: linear-gradient(to bottom, var(--amber), transparent);
             animation: drip 2.2s ease infinite;
         }
         @keyframes drip {
@@ -362,7 +369,7 @@
             max-width: 100%;
         }
         .status-key {
-            color: var(--sodium);
+            color: var(--amber);
             letter-spacing: 0.18em;
             text-transform: uppercase;
             font-size: 0.6rem;
@@ -431,7 +438,7 @@
         }
         .ticker-item::before {
             content: '+';
-            color: var(--sodium);
+            color: var(--amber);
         }
         @keyframes ticker {
             from { transform: translateX(0); }
@@ -462,7 +469,7 @@
             font-family: var(--mono);
             font-size: 0.62rem;
             letter-spacing: 0.2em;
-            color: var(--sodium);
+            color: var(--amber);
             border: 1px solid var(--line-strong);
             padding: 0.25rem 0.65rem;
             flex-shrink: 0;
@@ -529,10 +536,10 @@
             color: var(--text);
             margin-bottom: 1.5rem;
         }
-        .about-body strong { color: var(--sodium); font-weight: 500; }
+        .about-body strong { color: var(--amber); font-weight: 500; }
         .about-body p:first-child::before {
             content: '§';
-            color: var(--sodium);
+            color: var(--amber);
             font-family: var(--mono);
             margin-right: 0.6rem;
         }
@@ -557,7 +564,7 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 2px;
-            background: linear-gradient(90deg, var(--sodium), transparent 65%);
+            background: linear-gradient(90deg, var(--amber), transparent 65%);
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -568,7 +575,7 @@
             font-size: 0.6rem;
             letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: var(--sodium);
+            color: var(--amber);
             margin-bottom: 1.4rem;
         }
         .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
@@ -642,7 +649,7 @@
             position: absolute;
             left: 0; top: 0; bottom: 0;
             width: 2px;
-            background: var(--sodium);
+            background: var(--amber);
             transform: scaleY(0);
             transition: transform 0.3s ease;
         }
@@ -655,7 +662,7 @@
             color: var(--faint);
             padding-top: 0.45rem;
         }
-        .project-num::before { content: '№ '; color: var(--sodium-dim); }
+        .project-num::before { content: '№ '; color: var(--amber-dim); }
         .project-tag {
             font-family: var(--mono);
             font-size: 0.66rem;
@@ -674,7 +681,7 @@
             margin-bottom: 0.7rem;
             transition: color 0.25s ease;
         }
-        .project-item:hover .project-title { color: var(--sodium); }
+        .project-item:hover .project-title { color: var(--amber); }
         .project-desc {
             font-size: 1.02rem;
             font-weight: 300;
@@ -693,7 +700,7 @@
             gap: 0.45rem;
         }
         .project-status {
-            color: var(--sodium);
+            color: var(--amber);
             text-transform: uppercase;
             letter-spacing: 0.18em;
             font-size: 0.62rem;
@@ -707,7 +714,7 @@
             transition: transform 0.25s ease, color 0.25s ease;
         }
         .project-item:hover .project-arrow {
-            color: var(--sodium);
+            color: var(--amber);
             transform: translateX(5px);
         }
 
@@ -728,7 +735,7 @@
         }
         .contact-intro em {
             font-style: normal;
-            color: var(--sodium);
+            color: var(--amber);
         }
         .contact-links { display: flex; flex-direction: column; }
         .contact-link-item {
@@ -743,7 +750,7 @@
             transition: all 0.25s ease;
         }
         .contact-link-item:first-child { border-top: 1px solid var(--line); }
-        .contact-link-item:hover { border-bottom-color: var(--sodium); padding-left: 0.9rem; }
+        .contact-link-item:hover { border-bottom-color: var(--amber); padding-left: 0.9rem; }
         .contact-link-label {
             font-family: var(--mono);
             font-size: 0.58rem;
@@ -759,14 +766,14 @@
             text-overflow: ellipsis;
             white-space: nowrap;
         }
-        .contact-link-item:hover .contact-link-value { color: var(--sodium); }
+        .contact-link-item:hover .contact-link-value { color: var(--amber); }
         .contact-link-arrow {
             font-family: var(--mono);
             color: var(--faint);
             transition: color 0.25s ease, transform 0.25s ease;
         }
         .contact-link-item:hover .contact-link-arrow {
-            color: var(--sodium);
+            color: var(--amber);
             transform: translateX(4px);
         }
 
@@ -788,7 +795,7 @@
             letter-spacing: 0.12em;
             color: var(--faint);
         }
-        .footer-coords { color: var(--sodium-dim) !important; }
+        .footer-coords { color: var(--amber-dim) !important; }
 
         /* ── RESPONSIVE ─────────────────────────────────────────────────── */
         @media (max-width: 1024px) {
@@ -857,12 +864,12 @@
         }
         .nav-hamburger.open span:nth-child(1) {
             transform: translateY(8.5px) rotate(45deg);
-            background: var(--sodium);
+            background: var(--amber);
         }
         .nav-hamburger.open span:nth-child(2) { opacity: 0; }
         .nav-hamburger.open span:nth-child(3) {
             transform: translateY(-8.5px) rotate(-45deg);
-            background: var(--sodium);
+            background: var(--amber);
         }
 
         /* ── MOBILE NAV OVERLAY ──────────────────────────────────────────── */
@@ -904,7 +911,7 @@
             margin-right: 0.55em;
         }
         .nav-overlay ul li a:hover,
-        .nav-overlay ul li a:focus-visible { color: var(--sodium); padding-left: 2.6rem; }
+        .nav-overlay ul li a:focus-visible { color: var(--amber); padding-left: 2.6rem; }
 
         /* Grain overlay */
         body::after {
@@ -926,7 +933,7 @@
     <div class="nav-overlay" id="nav-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
         <ul>
             <li><a href="#about" class="nav-overlay-link">About</a></li>
-            <li><a href="#instrumentation" class="nav-overlay-link">Skills</a></li>
+            <li><a href="#toolkit" class="nav-overlay-link">Skills</a></li>
             <li><a href="#log" class="nav-overlay-link">Research</a></li>
             <li><a href="#contact" class="nav-overlay-link">Contact</a></li>
         </ul>
@@ -937,7 +944,7 @@
         <a class="nav-logo" id="nav-logo" href="#">R. Garg</a>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
-            <li><a href="#instrumentation">Skills</a></li>
+            <li><a href="#toolkit">Skills</a></li>
             <li><a href="#log">Research</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -952,9 +959,9 @@
     <header class="hero">
         <canvas id="fieldCanvas" aria-hidden="true"></canvas>
         <div class="hero-inner">
-            <p class="hero-eyebrow" id="hero-eyebrow">Physics Researcher &amp; Developer</p>
+            <p class="hero-eyebrow" id="hero-eyebrow">Physics · Computation</p>
             <h1 class="hero-name" id="hero-name">Rishabh<span class="last">Garg</span></h1>
-            <p class="hero-tagline" id="hero-tagline">Student researcher at the intersection of physics and mathematical modelling.</p>
+            <p class="hero-tagline" id="hero-tagline">Student researcher working across physics, mathematics and computation — from particle beams to Bayesian inference.</p>
             <div class="hero-cta">
                 <a class="btn-primary" id="hero-btn-primary" href="#log">View Research →</a>
                 <a class="btn-ghost" id="hero-btn-ghost" href="#contact">Get in Touch</a>
@@ -1029,7 +1036,7 @@
                 </div>
             </div>
             <div class="about-body" id="about-body">
-                <p>I am an incoming freshman at <strong>California Institute of Technology (Caltech)</strong>, with a deep passion for the interwoven fields of physics and computer science. I am fascinated by the fundamental laws that govern our universe, and I enjoy leveraging programming to solve complex problems, model intricate systems, and analyze data at scale.</p>
+                <p>I am an incoming freshman at <strong>California Institute of Technology (Caltech)</strong>, with a deep passion for the interwoven fields of physics, mathematics, and computer science. I am fascinated by the fundamental laws that govern our universe and the mathematical structures beneath them, and I enjoy leveraging programming to solve complex problems, model intricate systems, and analyze data at scale.</p>
                 <p>My goal is to pursue a career that allows me to combine these two fields to push the boundaries of scientific research and technological innovation. Currently, I am involved in <strong>astrophysics research at Caltech</strong>, where I apply computational techniques to study exoplanetary atmospheres. I am also a reviewer for the <strong>Journal of Open Source Software</strong>, contributing to the open-source community by evaluating scientific software tools.</p>
                 <p>Outside of academics, I find balance through running and video production.</p>
             </div>
@@ -1037,26 +1044,28 @@
     </section>
 
     <div class="divider" aria-hidden="true">
-        <span class="divider-label">Na I · D2</span>
+        <span class="divider-label">∮ E · dA = q / ε₀</span>
         <div class="spectrum"></div>
     </div>
 
     <!-- Skills -->
-    <section id="instrumentation" class="section">
+    <section id="toolkit" class="section">
         <div class="section-header">
             <span class="section-num">SEC / 02</span>
-            <h2 class="section-title">Instrumentation</h2>
+            <h2 class="section-title">Toolkit</h2>
             <div class="section-line"></div>
         </div>
         <div class="skills-layout" id="skills-layout">
             <div class="skill-panel">
-                <div class="skill-panel-label">Physics &amp; Research</div>
+                <div class="skill-panel-label">Physics &amp; Mathematics</div>
                 <ul class="skill-list">
-                    <li>Data Analysis</li>
+                    <li>Mathematical Modelling</li>
+                    <li>Numerical Methods</li>
+                    <li>Bayesian Inference / MCMC</li>
                     <li>High Energy Particle Physics</li>
-                    <li>Network Analysis</li>
+                    <li>Network &amp; Graph Analysis</li>
                     <li>Scientific Computing</li>
-                    <li>Astrophysical Radiative Transfer</li>
+                    <li>Radiative Transfer</li>
                 </ul>
             </div>
             <div class="skill-panel">
@@ -1086,7 +1095,7 @@
     </section>
 
     <div class="divider" aria-hidden="true">
-        <span class="divider-label">H α · 656.3 nm</span>
+        <span class="divider-label">e^iπ + 1 = 0</span>
         <div class="spectrum"></div>
     </div>
 
@@ -1094,11 +1103,11 @@
     <section id="log" class="section">
         <div class="section-header">
             <span class="section-num">SEC / 03</span>
-            <h2 class="section-title">Observation Log</h2>
+            <h2 class="section-title">Research Log</h2>
             <div class="section-line"></div>
         </div>
         <div class="log-head" aria-hidden="true">
-            <span>Entry</span><span>Plate</span><span>Object / Notes</span><span>Epoch</span><span></span>
+            <span>Entry</span><span>Figure</span><span>Subject / Notes</span><span>Year</span><span></span>
         </div>
         <div class="projects-list" id="projects-list">
             <a href="https://beamlineforschools.cern/wp-content/uploads/2025/12/BL4S_all-winners_2025.pdf" target="_blank" rel="noopener noreferrer" class="project-item">
@@ -1175,15 +1184,15 @@
     </section>
 
     <div class="divider" aria-hidden="true">
-        <span class="divider-label">Fe I · 527.0 nm</span>
-        <div class="spectrum"></div>
+        <span class="divider-label">Na I · D₂ · 589.0 nm</span>
+        <div class="spectrum spectrum--lines"></div>
     </div>
 
     <!-- Contact -->
     <section id="contact" class="section">
         <div class="section-header">
             <span class="section-num">SEC / 04</span>
-            <h2 class="section-title">Transmission</h2>
+            <h2 class="section-title">Contact</h2>
             <div class="section-line"></div>
         </div>
         <div class="contact-layout">
@@ -1213,7 +1222,7 @@
         <div class="footer-inner">
             <p id="footer-copyright">© 2026 Rishabh Garg</p>
             <p class="footer-coords">33.6846° N · 117.8265° W</p>
-            <p id="footer-tagline">Physics Researcher · Developer · Irvine, CA</p>
+            <p id="footer-tagline">Physics · Mathematics · Computation · Irvine, CA</p>
         </div>
     </footer>
 
@@ -1405,10 +1414,13 @@
       ],
       "knowsAbout": [
         "Physics",
+        "Mathematics",
+        "Mathematical Modelling",
         "Computer Science",
         "Astrophysics",
         "Particle Physics",
         "Scientific Computing",
+        "Numerical Methods",
         "Python",
         "Data Analysis"
       ],
@@ -1421,7 +1433,7 @@
         "https://www.linkedin.com/in/rishabh-garg-34a5a51b7/"
       ],
       "email": "rgarg@rishabhgarg.dev",
-      "description": "High school researcher at the intersection of astrophysics, particle physics, and software development. Published in Monthly Notices of the Royal Astronomical Society.",
+      "description": "Student researcher working across physics, mathematics, and computation. Published in Monthly Notices of the Royal Astronomical Society.",
       "knowsLanguage": ["English"]
     }
     </script>
