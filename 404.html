@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Not Found | Rishabh Garg</title>
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23050810'/><circle cx='50' cy='50' r='10' fill='%23ffb454'/><circle cx='50' cy='50' r='28' fill='none' stroke='%23ffb454' stroke-width='3' stroke-dasharray='44 132' transform='rotate(-45 50 50)'/></svg>">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --void: #050810;
+            --amber: #ffb454;
+            --plasma: #6ee3ff;
+            --hydrogen: #ff6e91;
+            --text: #cdd6e4;
+            --dim: #8a94a8;
+            --faint: #56607a;
+            --line: rgba(138,148,168,0.16);
+            --display: 'Space Grotesk', system-ui, sans-serif;
+            --mono: 'IBM Plex Mono', 'Courier New', monospace;
+        }
+        body {
+            font-family: var(--display);
+            background: var(--void);
+            color: var(--text);
+            line-height: 1.65;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+        }
+        ::selection { background: var(--amber); color: var(--void); }
+        a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+        .spectrum {
+            height: 6px;
+            background: linear-gradient(90deg,
+                var(--plasma) 0%, var(--amber) 55%, var(--hydrogen) 100%);
+            opacity: 0.7;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 4rem 3rem;
+        }
+        .eyebrow {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 1.6rem;
+        }
+        h1 {
+            font-weight: 600;
+            font-size: clamp(3.2rem, 9vw, 7rem);
+            line-height: 0.98;
+            letter-spacing: -0.03em;
+            color: #f2f5fa;
+            margin-bottom: 1.4rem;
+        }
+        h1 .stroke {
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--amber);
+        }
+        p.lead {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--dim);
+            max-width: 46ch;
+            margin-bottom: 2.6rem;
+        }
+        .btn {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0.95rem 2.1rem;
+            background: var(--amber);
+            color: var(--void);
+            border: 1px solid var(--amber);
+            display: inline-block;
+            transition: all 0.25s ease;
+        }
+        .btn:hover {
+            background: transparent;
+            color: var(--amber);
+            box-shadow: 0 0 30px rgba(255,180,84,0.25);
+        }
+        footer { border-top: 1px solid var(--line); }
+        footer p {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 3rem;
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            color: var(--faint);
+        }
+        @media (max-width: 768px) {
+            main { padding: 3rem 1.4rem; }
+            footer p { padding: 1.5rem 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="spectrum" aria-hidden="true"></div>
+    <main>
+        <p class="eyebrow">Error 404</p>
+        <h1>Signal <span class="stroke">Lost</span></h1>
+        <p class="lead">That page isn&rsquo;t here. It may have moved, or the link may have been mistyped.</p>
+        <p><a class="btn" href="/">Return to index &rarr;</a></p>
+    </main>
+    <footer>
+        <p>&copy; 2026 Rishabh Garg &middot; Physics &middot; Mathematics &middot; Computation</p>
+    </footer>
+</body>
+</html>

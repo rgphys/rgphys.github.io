@@ -1,0 +1,11 @@
+# GitHub Pages builds this repo with Jekyll by default. The site itself is
+# plain static HTML — this file exists only to keep build inputs out of the
+# published output.
+#
+# source-images/ holds the full-resolution originals (~7.9 MB) that
+# tools/optimize-images.sh derives static/ from. Nothing links to either, but
+# without this they would still be served.
+exclude:
+  - source-images
+  - tools
+  - README.md

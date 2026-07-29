@@ -4,27 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rishabh Garg | Physics Researcher &amp; Developer</title>
-    <meta name="description" content="Portfolio of Rishabh Garg, a high school researcher and developer specializing in physics and computer science. Published in MNRAS, Caltech researcher, CERN Beamline for Schools winner.">
-    <meta name="keywords" content="Rishabh Garg, physics researcher, mathematics, mathematical modelling, software developer, particle physics, scientific computing, numerical methods, Caltech, CERN, MNRAS, JOSS reviewer">
+    <meta name="description" content="Rishabh Garg — physics, mathematics and computation at Caltech. Published in Monthly Notices of the Royal Astronomical Society; CERN Beamline for Schools shortlisted winner; reviewer for the Journal of Open Source Software.">
     <meta name="author" content="Rishabh Garg">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://rishabhgarg.dev">
-    <meta property="og:title" content="Rishabh Garg | Physics Researcher & Developer">
-    <meta property="og:description" content="Portfolio of Rishabh Garg, a student researcher and developer working across physics, mathematics, and computation. Published in MNRAS.">
+    <meta property="og:title" content="Rishabh Garg | Physics Researcher &amp; Developer">
+    <meta property="og:description" content="Physics, mathematics and computation at Caltech. Published in Monthly Notices of the Royal Astronomical Society.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://rishabhgarg.dev">
-    <meta property="og:image" content="https://rishabhgarg.dev/static/DSC08945.png">
+    <meta property="og:image" content="https://rishabhgarg.dev/static/og-card.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Rishabh Garg, physics researcher and developer">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Rishabh Garg | Physics Researcher & Developer">
-    <meta name="twitter:description" content="Portfolio of Rishabh Garg, a student researcher working across physics, mathematics, and computation.">
-    <meta name="twitter:image" content="https://rishabhgarg.dev/static/DSC08945.png">
+    <meta name="twitter:title" content="Rishabh Garg | Physics Researcher &amp; Developer">
+    <meta name="twitter:description" content="Physics, mathematics and computation at Caltech. Published in Monthly Notices of the Royal Astronomical Society.">
+    <meta name="twitter:image" content="https://rishabhgarg.dev/static/og-card.jpg">
     <meta name="twitter:image:alt" content="Rishabh Garg, physics researcher and developer">
     <meta name="theme-color" content="#050810">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23050810'/><circle cx='50' cy='50' r='10' fill='%23ffb454'/><circle cx='50' cy='50' r='28' fill='none' stroke='%23ffb454' stroke-width='3' stroke-dasharray='44 132' transform='rotate(-45 50 50)'/></svg>">
+    <!-- Runs before first paint: gates the scroll-reveal start state so a
+         JS failure degrades to plain visible content rather than a blank page. -->
+    <script>document.documentElement.classList.add('js');</script>
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -70,6 +75,27 @@
         a:focus-visible, button:focus-visible {
             outline: 2px solid var(--amber);
             outline-offset: 3px;
+        }
+
+        /* Skip link — hidden until focused. Without it, keyboard users tab
+           through the fixed nav on every load before reaching content. */
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            z-index: 300;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: var(--amber);
+            color: var(--void);
+            padding: 0.9rem 1.6rem;
+        }
+        .skip-link:focus {
+            left: 1rem;
+            top: 1rem;
         }
 
         /* ── Accent strip (top of page + dividers) ──────────────────────── */
@@ -211,8 +237,9 @@
             opacity: 0;
             animation: reveal 0.9s ease 0.25s both;
         }
-        .hero-eyebrow::before {
-            content: 'iℏ ∂ₜψ = Ĥψ';
+        /* Real element rather than ::before content — generated content is
+           announced by some screen readers, and this is pure decoration. */
+        .hero-eyebrow .sigil {
             color: var(--faint);
             border: 1px solid var(--line);
             padding: 0.2rem 0.6rem;
@@ -380,9 +407,9 @@
             font-size: 0.5rem;
             margin-right: 0.5rem;
             color: var(--plasma);
-            animation: pulse 2.4s ease infinite;
+            /* Deliberately not animated: these values are hardcoded, and a
+               pulsing dot would imply a live feed that no longer exists. */
         }
-        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
         .status-item > span:not(.status-key) {
             min-width: 0;
             overflow: hidden;
@@ -450,13 +477,18 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 4.5rem 3rem;
+        }
+        /* The scroll-reveal start state is scoped to .js (set by an inline
+           script in <head>) so that without JavaScript every section renders
+           visible instead of staying at opacity 0 forever. */
+        .js .section {
             opacity: 0;
             transform: translateY(26px);
             transition: opacity 0.7s ease, transform 0.7s ease;
         }
-        .section.visible { opacity: 1; transform: translateY(0); }
+        .js .section.visible { opacity: 1; transform: translateY(0); }
         @media (prefers-reduced-motion: reduce) {
-            .section { opacity: 1; transform: none; }
+            .js .section { opacity: 1; transform: none; }
         }
 
         .section-header {
@@ -491,9 +523,41 @@
             gap: 5rem;
             align-items: start;
         }
-        .about-readouts {
+        .about-aside {
             position: sticky;
             top: 7rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+        }
+        .about-portrait {
+            position: relative;
+            border: 1px solid var(--line-strong);
+            background: var(--void-2);
+            overflow: hidden;
+        }
+        .about-portrait img {
+            display: block;
+            width: 100%;
+            height: auto;
+            /* The source is shot on white; damping it keeps the panel from
+               punching a hole in the dark layout. Restored on hover. */
+            filter: grayscale(0.35) contrast(1.04) brightness(0.92);
+            transition: filter 0.4s ease;
+        }
+        .about-portrait:hover img { filter: none; }
+        .about-portrait figcaption {
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            padding: 0.75rem 1rem;
+            background: linear-gradient(to top, rgba(5,8,16,0.92), transparent);
+            font-family: var(--mono);
+            font-size: 0.56rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--dim);
+        }
+        .about-readouts {
             display: grid;
             gap: 1px;
             background: var(--line);
@@ -689,6 +753,15 @@
             line-height: 1.7;
             max-width: 60ch;
         }
+        /* Pointer from a log entry to its paper. Deliberately not an <a>:
+           the whole row is already one, and anchors cannot nest. */
+        .project-xref {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            color: var(--plasma);
+            white-space: nowrap;
+        }
         .project-meta {
             font-family: var(--mono);
             font-size: 0.88rem;
@@ -717,6 +790,93 @@
             color: var(--amber);
             transform: translateX(5px);
         }
+
+        /* ── PUBLICATIONS ───────────────────────────────────────────────── */
+        .pubs { display: flex; flex-direction: column; gap: 1.5rem; }
+        .pub {
+            border: 1px solid var(--line);
+            border-left: 2px solid var(--amber);
+            background: var(--void-2);
+            padding: 2rem 2.2rem;
+        }
+        .pub-venue {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--plasma);
+            margin-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.1rem;
+        }
+        .pub-venue .pub-year { color: var(--faint); }
+        .pub-title {
+            font-family: var(--display);
+            font-weight: 500;
+            font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+            letter-spacing: -0.015em;
+            color: #eef2f8;
+            line-height: 1.3;
+            margin-bottom: 1.1rem;
+        }
+        .pub-authors {
+            font-size: 0.92rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--dim);
+            margin-bottom: 0.9rem;
+        }
+        /* Standard CV convention: the author's own name is emphasised so a
+           reader can find them in a long author list. */
+        .pub-authors .self { color: var(--amber); font-weight: 500; }
+        .pub-cite {
+            font-size: 0.92rem;
+            font-weight: 300;
+            color: var(--text);
+            margin-bottom: 1.6rem;
+        }
+        .pub-cite em { font-style: italic; color: var(--dim); }
+        .pub-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+        .pub-btn {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0.7rem 1.3rem;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--dim);
+            cursor: pointer;
+            transition: border-color 0.25s ease, color 0.25s ease;
+        }
+        .pub-btn:hover { border-color: var(--amber); color: var(--amber); }
+        .pub-btn[data-copied="true"] { border-color: var(--plasma); color: var(--plasma); }
+        .pub-bibtex {
+            margin-top: 1.4rem;
+            border-top: 1px solid var(--line);
+            padding-top: 1.2rem;
+        }
+        .pub-bibtex summary {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--faint);
+            cursor: pointer;
+        }
+        .pub-bibtex pre {
+            margin-top: 1rem;
+            overflow-x: auto;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            line-height: 1.7;
+            color: var(--dim);
+        }
+        /* Without JS the copy button cannot work, so hide it and let the
+           <details> fallback carry the BibTeX on its own. */
+        html:not(.js) .pub-btn--copy { display: none; }
 
         /* ── CONTACT ────────────────────────────────────────────────────── */
         .contact-layout {
@@ -801,15 +961,20 @@
         @media (max-width: 1024px) {
             .hero-stats { position: static; flex-direction: row; gap: 2.5rem; text-align: left; margin-top: 3rem; }
             .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-            .about-readouts { position: static; grid-template-columns: 1fr 1fr; }
+            .about-aside { position: static; }
+            .about-portrait { max-width: 260px; }
+            .about-readouts { grid-template-columns: 1fr 1fr; }
             .skills-layout { grid-template-columns: 1fr 1fr; }
             .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
             nav { padding: 1.1rem 2rem; }
+            .nav-links { gap: 1.5rem; }
         }
         @media (max-width: 768px) {
             nav { padding: 1rem 1.4rem; }
-            .nav-links { gap: 1.3rem; }
-            .nav-links a::before { content: none; }
+            /* Five uppercase mono links with '/' prefixes stop fitting well
+               before 768px, so the overlay takes over here rather than at 480. */
+            .nav-links { display: none; }
+            .nav-hamburger { display: flex; }
             .section { padding: 5rem 1.4rem; }
             .divider { padding: 0 1.4rem; }
             .hero-inner { padding: 7rem 1.4rem 3rem; }
@@ -827,8 +992,6 @@
             .contact-link-item { grid-template-columns: 72px 1fr auto; gap: 0.9rem; }
         }
         @media (max-width: 480px) {
-            .nav-links { display: none; }
-            .nav-hamburger { display: flex; }
             .section { padding: 4rem 1.1rem; }
             .hero-inner { padding: 6rem 1.1rem 2.5rem; }
             .hero-scroll { left: 1.1rem; }
@@ -927,6 +1090,8 @@
 </head>
 <body>
 
+    <a class="skip-link" href="#about">Skip to content</a>
+
     <div class="spectrum" aria-hidden="true"></div>
 
     <!-- Mobile nav overlay -->
@@ -934,8 +1099,10 @@
         <ul>
             <li><a href="#about" class="nav-overlay-link">About</a></li>
             <li><a href="#toolkit" class="nav-overlay-link">Skills</a></li>
+            <li><a href="#publications" class="nav-overlay-link">Publications</a></li>
             <li><a href="#log" class="nav-overlay-link">Research</a></li>
             <li><a href="#contact" class="nav-overlay-link">Contact</a></li>
+            <li><a href="static/Resume.pdf" class="nav-overlay-link" target="_blank" rel="noopener noreferrer">Résumé</a></li>
         </ul>
     </div>
 
@@ -945,8 +1112,10 @@
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#toolkit">Skills</a></li>
+            <li><a href="#publications">Publications</a></li>
             <li><a href="#log">Research</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="static/Resume.pdf" target="_blank" rel="noopener noreferrer">Résumé</a></li>
         </ul>
         <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false">
             <span></span>
@@ -959,11 +1128,12 @@
     <header class="hero">
         <canvas id="fieldCanvas" aria-hidden="true"></canvas>
         <div class="hero-inner">
-            <p class="hero-eyebrow" id="hero-eyebrow">Physics · Computation</p>
+            <p class="hero-eyebrow" id="hero-eyebrow"><span class="sigil" aria-hidden="true">iℏ ∂ₜψ = Ĥψ</span>Physics · Computation</p>
             <h1 class="hero-name" id="hero-name">Rishabh<span class="last">Garg</span></h1>
             <p class="hero-tagline" id="hero-tagline">Student researcher working across physics, mathematics and computation.</p>
             <div class="hero-cta">
                 <a class="btn-primary" id="hero-btn-primary" href="#log">View Research →</a>
+                <a class="btn-ghost" id="hero-btn-resume" href="static/Resume.pdf" target="_blank" rel="noopener noreferrer">Résumé ↗</a>
                 <a class="btn-ghost" id="hero-btn-ghost" href="#contact">Get in Touch</a>
             </div>
             <div class="hero-stats" id="hero-stats">
@@ -983,7 +1153,10 @@
     <!-- Status strip -->
     <div class="status-strip">
         <div class="status-inner" id="status-strip">
-            <div class="status-item"><span class="status-key">Now</span><span id="status-now">Currently working on astrophysics research at Caltech / JPL.</span></div>
+            <div class="status-item"><span class="status-key">Now</span><span id="status-now">Astrophysics research at Caltech &amp; JPL</span></div>
+            <div class="status-item"><span class="status-key">Published</span><span><a href="https://doi.org/10.1093/mnras/staf1526" target="_blank" rel="noopener noreferrer">MNRAS 546, staf1526 — volcanic satellites in Na, K, SO₂</a></span></div>
+            <div class="status-item"><span class="status-key">Reviewing</span><span>Journal of Open Source Software</span></div>
+            <div class="status-item"><span class="status-key">Based</span><span>Pasadena, California</span></div>
         </div>
     </div>
 
@@ -994,14 +1167,12 @@
             <span class="ticker-item">CERN Beamline for Schools — Shortlisted Winner</span>
             <span class="ticker-item">Published: Monthly Notices of the Royal Astronomical Society</span>
             <span class="ticker-item">JOSS Reviewer</span>
-            <span class="ticker-item">Portola High School, Irvine</span>
-            <span class="ticker-item">Show Editor — Portola News Network</span>
+            <span class="ticker-item">Radiative Transfer — PROMETHEUS</span>
             <span class="ticker-item">Astrophysics Research — Caltech</span>
             <span class="ticker-item">CERN Beamline for Schools — Shortlisted Winner</span>
             <span class="ticker-item">Published: Monthly Notices of the Royal Astronomical Society</span>
             <span class="ticker-item">JOSS Reviewer</span>
-            <span class="ticker-item">Portola High School, Irvine</span>
-            <span class="ticker-item">Show Editor — Portola News Network</span>
+            <span class="ticker-item">Radiative Transfer — PROMETHEUS</span>
         </div>
     </div>
 
@@ -1013,7 +1184,13 @@
             <div class="section-line"></div>
         </div>
         <div class="about-grid">
-            <div class="about-readouts" id="about-readouts">
+            <div class="about-aside">
+                <figure class="about-portrait">
+                    <img src="static/portrait.jpg" width="600" height="600"
+                         alt="Rishabh Garg" loading="lazy" decoding="async">
+                    <figcaption>Rishabh Garg</figcaption>
+                </figure>
+                <div class="about-readouts" id="about-readouts">
                 <div class="readout" data-idx="01">
                     <div class="readout-label">Current Position</div>
                     <div class="readout-name">Caltech</div>
@@ -1034,9 +1211,10 @@
                     <div class="readout-name">JOSS</div>
                     <div class="readout-sub">Journal of Open Source Software</div>
                 </div>
+                </div>
             </div>
             <div class="about-body" id="about-body">
-                <p>I am a freshman at <strong>California Institute of Technology (Caltech)</strong>, with a deep passion for the interwoven fields of physics, mathematics, and computer science. I am fascinated by the fundamental laws that govern our universe and the mathematical structures beneath them, and I enjoy leveraging programming to solve complex problems, model intricate systems, and analyze data at scale.</p>
+                <p>I study at the <strong>California Institute of Technology (Caltech)</strong>, with a deep passion for the interwoven fields of physics, mathematics, and computer science. I am fascinated by the fundamental laws that govern our universe and the mathematical structures beneath them, and I enjoy leveraging programming to solve complex problems, model intricate systems, and analyze data at scale.</p>
                 <p>My goal is to pursue a career that allows me to combine these two fields to push the boundaries of scientific research and technological innovation. Currently, I am involved in <strong>astrophysics research at Caltech</strong>, where I apply computational techniques to study exoplanetary atmospheres. I am also a reviewer for the <strong>Journal of Open Source Software</strong>, contributing to the open-source community by evaluating scientific software tools.</p>
                 <p>Outside of academics, I find balance through running and video production.</p>
             </div>
@@ -1099,10 +1277,92 @@
         <div class="spectrum"></div>
     </div>
 
+    <!-- Publications -->
+    <section id="publications" class="section">
+        <div class="section-header">
+            <span class="section-num">SEC / 03</span>
+            <h2 class="section-title">Publications</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="pubs">
+        <article class="pub">
+            <div class="pub-venue">
+                <span>IEEE MIT Undergraduate Research Technology Conference</span>
+                <span class="pub-year">2025</span>
+                <span class="pub-year">First author</span>
+            </div>
+            <h3 class="pub-title">Measuring the Complexity of Sub-Policies in Online Terms of Service Networks</h3>
+            <p class="pub-authors"><span class="self">Garg, R.</span>, Huang, Z., &amp; Sundaram, H.</p>
+            <p class="pub-cite"><em>2025 IEEE MIT Undergraduate Research Technology Conference (URTC)</em>, Cambridge, MA, USA, pp.&nbsp;1–5.</p>
+            <div class="pub-actions">
+                <a class="pub-btn" href="https://doi.org/10.1109/URTC68753.2025.11533052" target="_blank" rel="noopener noreferrer">DOI: 10.1109/URTC68753.2025.11533052 →</a>
+                <a class="pub-btn" href="https://github.com/rgphys/ToS-Complexity" target="_blank" rel="noopener noreferrer">Code ↗</a>
+                <button class="pub-btn pub-btn--copy" type="button" data-bibtex-for="bibtex-garg2025">Copy BibTeX</button>
+            </div>
+            <details class="pub-bibtex">
+                <summary>BibTeX</summary>
+<pre id="bibtex-garg2025">@inproceedings{garg2025measuring,
+  author    = {Garg, Rishabh and Huang, Ziheng and Sundaram, Hari},
+  title     = {Measuring the Complexity of Sub-Policies in Online
+               Terms of Service Networks},
+  booktitle = {2025 IEEE MIT Undergraduate Research Technology
+               Conference (URTC)},
+  address   = {Cambridge, MA, USA},
+  publisher = {IEEE},
+  pages     = {1--5},
+  year      = {2025},
+  doi       = {10.1109/URTC68753.2025.11533052}
+}</pre>
+            </details>
+        </article>
+        <article class="pub">
+            <div class="pub-venue">
+                <span>Monthly Notices of the Royal Astronomical Society</span>
+                <span class="pub-year">2025</span>
+                <span class="pub-year">Peer-reviewed</span>
+            </div>
+            <h3 class="pub-title">Volcanic satellites tidally venting Na, K, and SO<sub>2</sub> in optical and infrared light</h3>
+            <p class="pub-authors">Oza, A.&nbsp;V., Gebek, A., Meyer zu Westram, M., Tokadjian, A., Piro, A.&nbsp;L., Hu, R., Unni, A., Chari, R., Bello-Arufe, A., Schmidt, C.&nbsp;A., Louca, A.&nbsp;J., Miguel, Y., Estrela, R., Yang, J., Damiano, M., Hasegawa, Y., Welbanks, L., Powell, D., <span class="self">Garg, R.</span>, Gupta, P., Yung, Y.&nbsp;L., &amp; Lopes, R.&nbsp;M.&nbsp;C.</p>
+            <p class="pub-cite"><em>Monthly Notices of the Royal Astronomical Society</em>, <strong>546</strong>(1), staf1526.</p>
+            <div class="pub-actions">
+                <a class="pub-btn" href="https://doi.org/10.1093/mnras/staf1526" target="_blank" rel="noopener noreferrer">DOI: 10.1093/mnras/staf1526 →</a>
+                <a class="pub-btn" href="https://github.com/rgphys/Prometheus" target="_blank" rel="noopener noreferrer">Code ↗</a>
+                <button class="pub-btn pub-btn--copy" type="button" data-bibtex-for="bibtex-oza2025">Copy BibTeX</button>
+            </div>
+            <details class="pub-bibtex">
+                <summary>BibTeX</summary>
+<pre id="bibtex-oza2025">@article{oza2025volcanic,
+  author  = {Oza, Apurva V. and Gebek, Andrea and Meyer zu Westram, Moritz
+             and Tokadjian, Armen and Piro, Anthony L. and Hu, Renyu
+             and Unni, Athira and Chari, Raghav and Bello-Arufe, Aaron
+             and Schmidt, Carl A. and Louca, Amy J. and Miguel, Yamila
+             and Estrela, Raissa and Yang, Jeehyun and Damiano, Mario
+             and Hasegawa, Yasuhiro and Welbanks, Luis and Powell, Diana
+             and Garg, Rishabh and Gupta, Pulkit and Yung, Yuk L.
+             and Lopes, Rosaly M. C.},
+  title   = {Volcanic satellites tidally venting {Na}, {K}, and {SO$_2$}
+             in optical and infrared light},
+  journal = {Monthly Notices of the Royal Astronomical Society},
+  volume  = {546},
+  number  = {1},
+  pages   = {staf1526},
+  year    = {2025},
+  doi     = {10.1093/mnras/staf1526}
+}</pre>
+            </details>
+        </article>
+        </div>
+    </section>
+
+    <div class="divider" aria-hidden="true">
+        <span class="divider-label">∇ · B = 0</span>
+        <div class="spectrum"></div>
+    </div>
+
     <!-- Projects / Observation log -->
     <section id="log" class="section">
         <div class="section-header">
-            <span class="section-num">SEC / 03</span>
+            <span class="section-num">SEC / 04</span>
             <h2 class="section-title">Research Log</h2>
             <div class="section-line"></div>
         </div>
@@ -1112,7 +1372,7 @@
         <div class="projects-list" id="projects-list">
             <a href="https://beamlineforschools.cern/wp-content/uploads/2025/12/BL4S_all-winners_2025.pdf" target="_blank" rel="noopener noreferrer" class="project-item">
                 <span class="project-num">001</span>
-                <div class="project-thumb"><img src="static/setup2.png" alt="CERN Beamline experimental setup for relativistic electron particle beam research" loading="lazy"></div>
+                <div class="project-thumb"><img src="static/setup2.png" width="1200" height="716" alt="CERN Beamline experimental setup for relativistic electron particle beam research" loading="lazy" decoding="async"></div>
                 <div class="project-body">
                     <div class="project-tag">Particle Physics · CERN</div>
                     <h3 class="project-title">Beamline For Schools Proposal</h3>
@@ -1126,11 +1386,11 @@
             </a>
             <a href="https://academic.oup.com/mnras/advance-article/doi/10.1093/mnras/staf1526/8263929" target="_blank" rel="noopener noreferrer" class="project-item">
                 <span class="project-num">002</span>
-                <div class="project-thumb"><img src="static/combined_mcmc_prometheus_models-1.png" alt="MCMC simulation results showing sodium signatures in exomoon atmospheres around WASP-39b" loading="lazy"></div>
+                <div class="project-thumb"><img src="static/combined_mcmc_prometheus_models-1.png" width="720" height="241" alt="MCMC simulation results showing sodium signatures in exomoon atmospheres around WASP-39b" loading="lazy" decoding="async"></div>
                 <div class="project-body">
                     <div class="project-tag">Astrophysics · Caltech · MNRAS</div>
                     <h3 class="project-title">Caltech Exomoon Research</h3>
-                    <p class="project-desc">Collaborated with Dr. Apurva Oza to simulate exomoons around gas giant exoplanets. Published in Monthly Notices of the Royal Astronomical Society with analysis of sodium signatures around WASP-39b.</p>
+                    <p class="project-desc">Collaborated with Dr. Apurva Oza to simulate exomoons around gas giant exoplanets. Published in Monthly Notices of the Royal Astronomical Society with analysis of sodium signatures around WASP-39b — see <span class="project-xref">Publications, SEC / 03</span>.</p>
                 </div>
                 <div class="project-meta">
                     <span>2025</span>
@@ -1140,7 +1400,7 @@
             </a>
             <a href="https://github.com/rgphys/Prometheus" target="_blank" rel="noopener noreferrer" class="project-item">
                 <span class="project-num">003</span>
-                <div class="project-thumb"><img src="static/C_UV_08.png" alt="Radiative transfer model visualization showing ultraviolet wavelength analysis for exoplanet atmospheres" loading="lazy"></div>
+                <div class="project-thumb"><img src="static/C_UV_08.png" width="720" height="360" alt="Radiative transfer model visualization showing ultraviolet wavelength analysis for exoplanet atmospheres" loading="lazy" decoding="async"></div>
                 <div class="project-body">
                     <div class="project-tag">Astrophysics · Caltech</div>
                     <h3 class="project-title">PROMETHEUS: Radiative Transfer Optimization</h3>
@@ -1154,15 +1414,15 @@
             </a>
             <a href="https://github.com/rgphys/ToS-Complexity" target="_blank" rel="noopener noreferrer" class="project-item">
                 <span class="project-num">004</span>
-                <div class="project-thumb"><img src="static/Reddit.png" alt="Network analysis visualization of Reddit's terms of service document structure and complexity" loading="lazy"></div>
+                <div class="project-thumb"><img src="static/Reddit.png" width="480" height="237" alt="Network analysis visualization of Reddit's terms of service document structure and complexity" loading="lazy" decoding="async"></div>
                 <div class="project-body">
                     <div class="project-tag">Network Analysis · UIUC</div>
                     <h3 class="project-title">Crowd Dynamics Lab Research</h3>
-                    <p class="project-desc">Network analysis of terms of service of major online platforms at UIUC. Novel algorithms to parse, analyze, and visualize complex legal text in order to enhance user transparency and rights understanding.</p>
+                    <p class="project-desc">Network analysis of terms of service of major online platforms at UIUC. Novel algorithms to parse, analyze, and visualize complex legal text in order to enhance user transparency and rights understanding. Published as first author at the IEEE MIT Undergraduate Research Technology Conference — see <span class="project-xref">Publications, SEC / 03</span>.</p>
                 </div>
                 <div class="project-meta">
-                    <span>2024</span>
-                    <span class="project-status">Complete</span>
+                    <span>2024–25</span>
+                    <span class="project-status">Published</span>
                 </div>
                 <span class="project-arrow">-&gt;</span>
             </a>
@@ -1191,7 +1451,7 @@
     <!-- Contact -->
     <section id="contact" class="section">
         <div class="section-header">
-            <span class="section-num">SEC / 04</span>
+            <span class="section-num">SEC / 05</span>
             <h2 class="section-title">Contact</h2>
             <div class="section-line"></div>
         </div>
@@ -1213,6 +1473,11 @@
                     <span class="contact-link-value">Rishabh Garg</span>
                     <span class="contact-link-arrow">-&gt;</span>
                 </a>
+                <a href="static/Resume.pdf" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+                    <span class="contact-link-label">Résumé</span>
+                    <span class="contact-link-value">Resume.pdf</span>
+                    <span class="contact-link-arrow">-&gt;</span>
+                </a>
             </div>
         </div>
     </section>
@@ -1221,8 +1486,8 @@
     <footer>
         <div class="footer-inner">
             <p id="footer-copyright">© 2026 Rishabh Garg</p>
-            <p class="footer-coords">33.6846° N · 117.8265° W</p>
-            <p id="footer-tagline">Physics · Mathematics · Computation · Irvine, CA</p>
+            <p class="footer-coords">34.1377° N · 118.1253° W</p>
+            <p id="footer-tagline">Physics · Mathematics · Computation · Pasadena, CA</p>
         </div>
     </footer>
 
@@ -1240,9 +1505,24 @@
             let W = 0, H = 0, particles = [];
             const mouse = { x: -9999, y: -9999, active: false };
 
-            function resize() {
-                W = canvas.width = canvas.offsetWidth;
-                H = canvas.height = canvas.offsetHeight;
+            function resize(force) {
+                const w = canvas.offsetWidth;
+                const h = canvas.offsetHeight;
+
+                // Mobile browsers fire resize continuously as the URL bar
+                // hides and shows. Re-seeding the field on each of those
+                // throws away every orbit, so ignore small height-only drift.
+                if (!force && w === W && Math.abs(h - H) < 120) return;
+
+                W = w; H = h;
+
+                // Back the canvas at device resolution, then work in CSS
+                // pixels — without this the field renders at 1x and upscales.
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                canvas.width = Math.round(W * dpr);
+                canvas.height = Math.round(H * dpr);
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
                 init();
             }
 
@@ -1338,27 +1618,60 @@
                     ctx.fill();
                 });
 
-                requestAnimationFrame(frame);
+                rafId = requestAnimationFrame(frame);
             }
 
-            resize();
-            window.addEventListener('resize', resize);
+            // ── Run only while the hero is actually on screen ─────────────
+            // Previously this loop ran at 60fps for the lifetime of the page,
+            // including scrolled past and in a background tab.
+            let rafId = null, onScreen = true;
+
+            function start() {
+                if (rafId === null) rafId = requestAnimationFrame(frame);
+            }
+            function stop() {
+                if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
+            }
+            function sync() {
+                if (onScreen && !document.hidden) start(); else stop();
+            }
+
+            resize(true);
+
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    resize(false);
+                    if (reduceMotion) drawStatic();
+                }, 150);
+            });
 
             if (reduceMotion) {
                 drawStatic();
-            } else {
-                const hero = canvas.parentElement;
-                hero.addEventListener('pointermove', e => {
-                    const rect = canvas.getBoundingClientRect();
-                    mouse.x = e.clientX - rect.left;
-                    mouse.y = e.clientY - rect.top;
-                    mouse.active = true;
-                });
-                hero.addEventListener('pointerleave', () => { mouse.active = false; });
-                ctx.fillStyle = '#050810';
-                ctx.fillRect(0, 0, W, H);
-                requestAnimationFrame(frame);
+                return;
             }
+
+            const hero = canvas.parentElement;
+            hero.addEventListener('pointermove', e => {
+                const rect = canvas.getBoundingClientRect();
+                mouse.x = e.clientX - rect.left;
+                mouse.y = e.clientY - rect.top;
+                mouse.active = true;
+            });
+            hero.addEventListener('pointerleave', () => { mouse.active = false; });
+
+            ctx.fillStyle = '#050810';
+            ctx.fillRect(0, 0, W, H);
+
+            new IntersectionObserver(entries => {
+                onScreen = entries[0].isIntersecting;
+                sync();
+            }, { threshold: 0 }).observe(hero);
+
+            document.addEventListener('visibilitychange', sync);
+
+            sync();
         })();
 
         // ── Mobile nav hamburger ─────────────────────────────────────────
@@ -1367,21 +1680,52 @@
             const overlay = document.getElementById('nav-overlay');
             if (!btn || !overlay) return;
 
+            const links = () => Array.from(overlay.querySelectorAll('.nav-overlay-link'));
+            let isOpen = false;
+
             function toggle(open) {
+                if (open === isOpen) return;
+                isOpen = open;
                 btn.classList.toggle('open', open);
                 overlay.classList.toggle('open', open);
                 btn.setAttribute('aria-expanded', String(open));
                 document.body.style.overflow = open ? 'hidden' : '';
+
+                // The overlay declares aria-modal, so focus has to actually
+                // move into it and come back out again on close.
+                if (open) links()[0]?.focus();
+                else btn.focus();
             }
 
-            btn.addEventListener('click', () => toggle(!btn.classList.contains('open')));
+            btn.addEventListener('click', () => toggle(!isOpen));
 
-            overlay.querySelectorAll('.nav-overlay-link').forEach(link => {
+            links().forEach(link => {
                 link.addEventListener('click', () => toggle(false));
             });
 
+            // Rotating a tablet past the breakpoint while the menu is open
+            // would otherwise leave it covering the page with body scroll
+            // still locked. Must match the CSS breakpoint below.
+            const wide = window.matchMedia('(min-width: 769px)');
+            const onBreakpoint = e => { if (e.matches) toggle(false); };
+            wide.addEventListener
+                ? wide.addEventListener('change', onBreakpoint)
+                : wide.addListener(onBreakpoint);
+
             document.addEventListener('keydown', e => {
-                if (e.key === 'Escape') toggle(false);
+                if (e.key === 'Escape' && isOpen) { toggle(false); return; }
+                if (e.key !== 'Tab' || !isOpen) return;
+
+                // Keep Tab inside the overlay while it is the active dialog.
+                const items = links();
+                if (!items.length) return;
+                const first = items[0], last = items[items.length - 1];
+
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault(); last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault(); first.focus();
+                }
             });
         })();
 
@@ -1390,51 +1734,140 @@
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
         document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+        // ── Copy BibTeX ──────────────────────────────────────────────────
+        // The <details> block below each button holds the same text, so this
+        // is an enhancement rather than the only way to get the citation.
+        document.querySelectorAll('[data-bibtex-for]').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const src = document.getElementById(btn.dataset.bibtexFor);
+                if (!src) return;
+                const label = btn.textContent;
+                try {
+                    await navigator.clipboard.writeText(src.textContent.trim());
+                    btn.textContent = 'Copied ✓';
+                } catch {
+                    // Clipboard is blocked on insecure origins and by some
+                    // permission policies — reveal the text instead.
+                    src.closest('details').open = true;
+                    btn.textContent = 'Select below';
+                }
+                btn.dataset.copied = 'true';
+                setTimeout(() => {
+                    btn.textContent = label;
+                    delete btn.dataset.copied;
+                }, 2000);
+            });
+        });
     </script>
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Rishabh Garg",
-      "url": "https://rishabhgarg.dev",
-      "image": "https://rishabhgarg.dev/static/DSC08945.png",
-      "jobTitle": "Researcher and Developer",
-      "affiliation": [
+      "@graph": [
         {
-          "@type": "Organization",
-          "name": "Caltech",
-          "url": "https://caltech.edu"
+          "@type": "Person",
+          "@id": "https://rishabhgarg.dev/#person",
+          "name": "Rishabh Garg",
+          "url": "https://rishabhgarg.dev",
+          "image": "https://rishabhgarg.dev/static/og-card.jpg",
+          "jobTitle": "Researcher and Developer",
+          "affiliation": {
+            "@type": "CollegeOrUniversity",
+            "name": "California Institute of Technology",
+            "url": "https://caltech.edu"
+          },
+          "alumniOf": {
+            "@type": "HighSchool",
+            "name": "Portola High School",
+            "url": "https://www.iusd.org/domain/2015"
+          },
+          "knowsAbout": [
+            "Physics",
+            "Mathematics",
+            "Mathematical Modelling",
+            "Computer Science",
+            "Astrophysics",
+            "Particle Physics",
+            "Scientific Computing",
+            "Numerical Methods",
+            "Python",
+            "Data Analysis"
+          ],
+          "worksFor": {
+            "@type": "CollegeOrUniversity",
+            "name": "California Institute of Technology",
+            "url": "https://caltech.edu"
+          },
+          "sameAs": [
+            "https://github.com/rgphys",
+            "https://www.linkedin.com/in/rishabh-garg-34a5a51b7/"
+          ],
+          "email": "rgarg@rishabhgarg.dev",
+          "description": "Student researcher working across physics, mathematics, and computation. Published in Monthly Notices of the Royal Astronomical Society.",
+          "knowsLanguage": ["English"]
         },
         {
-          "@type": "Organization",
-          "name": "Portola High School",
-          "url": "https://www.iusd.org/domain/2015"
+          "@type": "ScholarlyArticle",
+          "@id": "https://doi.org/10.1109/URTC68753.2025.11533052",
+          "headline": "Measuring the Complexity of Sub-Policies in Online Terms of Service Networks",
+          "name": "Measuring the Complexity of Sub-Policies in Online Terms of Service Networks",
+          "datePublished": "2025-10-10",
+          "sameAs": "https://doi.org/10.1109/URTC68753.2025.11533052",
+          "publisher": { "@type": "Organization", "name": "IEEE" },
+          "isPartOf": {
+            "@type": "PublicationEvent",
+            "name": "2025 IEEE MIT Undergraduate Research Technology Conference (URTC)",
+            "location": "Cambridge, MA, USA"
+          },
+          "pagination": "1-5",
+          "author": [
+            { "@id": "https://rishabhgarg.dev/#person" },
+            { "@type": "Person", "name": "Ziheng Huang" },
+            { "@type": "Person", "name": "Hari Sundaram" }
+          ]
+        },
+        {
+          "@type": "ScholarlyArticle",
+          "@id": "https://doi.org/10.1093/mnras/staf1526",
+          "headline": "Volcanic satellites tidally venting Na, K, and SO2 in optical and infrared light",
+          "name": "Volcanic satellites tidally venting Na, K, and SO2 in optical and infrared light",
+          "datePublished": "2025-09-25",
+          "sameAs": "https://doi.org/10.1093/mnras/staf1526",
+          "isPartOf": {
+            "@type": "Periodical",
+            "name": "Monthly Notices of the Royal Astronomical Society",
+            "issn": "1365-2966"
+          },
+          "volumeNumber": "546",
+          "issueNumber": "1",
+          "pagination": "staf1526",
+          "author": [
+            { "@type": "Person", "name": "Apurva V. Oza" },
+            { "@type": "Person", "name": "Andrea Gebek" },
+            { "@type": "Person", "name": "Moritz Meyer zu Westram" },
+            { "@type": "Person", "name": "Armen Tokadjian" },
+            { "@type": "Person", "name": "Anthony L. Piro" },
+            { "@type": "Person", "name": "Renyu Hu" },
+            { "@type": "Person", "name": "Athira Unni" },
+            { "@type": "Person", "name": "Raghav Chari" },
+            { "@type": "Person", "name": "Aaron Bello-Arufe" },
+            { "@type": "Person", "name": "Carl A. Schmidt" },
+            { "@type": "Person", "name": "Amy J. Louca" },
+            { "@type": "Person", "name": "Yamila Miguel" },
+            { "@type": "Person", "name": "Raissa Estrela" },
+            { "@type": "Person", "name": "Jeehyun Yang" },
+            { "@type": "Person", "name": "Mario Damiano" },
+            { "@type": "Person", "name": "Yasuhiro Hasegawa" },
+            { "@type": "Person", "name": "Luis Welbanks" },
+            { "@type": "Person", "name": "Diana Powell" },
+            { "@id": "https://rishabhgarg.dev/#person" },
+            { "@type": "Person", "name": "Pulkit Gupta" },
+            { "@type": "Person", "name": "Yuk L. Yung" },
+            { "@type": "Person", "name": "Rosaly M. C. Lopes" }
+          ]
         }
-      ],
-      "knowsAbout": [
-        "Physics",
-        "Mathematics",
-        "Mathematical Modelling",
-        "Computer Science",
-        "Astrophysics",
-        "Particle Physics",
-        "Scientific Computing",
-        "Numerical Methods",
-        "Python",
-        "Data Analysis"
-      ],
-      "worksfor": {
-        "@type": "Organization",
-        "name": "Caltech"
-      },
-      "sameAs": [
-        "https://github.com/rgphys",
-        "https://www.linkedin.com/in/rishabh-garg-34a5a51b7/"
-      ],
-      "email": "rgarg@rishabhgarg.dev",
-      "description": "Student researcher working across physics, mathematics, and computation. Published in Monthly Notices of the Royal Astronomical Society.",
-      "knowsLanguage": ["English"]
+      ]
     }
     </script>
 </body>
